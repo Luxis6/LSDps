@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Rating extends Model
 {
     use HasFactory;
-    protected $fillable = ['vote', 'comment', 'user', 'post'];
+    protected $fillable = ['vote', 'comment', 'user_id', 'post_id'];
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

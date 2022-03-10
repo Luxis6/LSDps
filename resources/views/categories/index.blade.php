@@ -18,7 +18,7 @@
                                 <div class="mt-2">
                                     <form action="" method="POST">
                                         @csrf
-                                        @method('patch')
+                                        @method('PATCH')
                                         <div>
                                             <div>
                                                 <input type="text" name="name" class="rounded" value=""
@@ -72,7 +72,8 @@
                             <div class="flex">
                                 <td class="py-4 px-1 text-sm font-medium text-right whitespace-nowrap">
                                     <button type="button"
-                                            class="focus:outline-none openModal text-white text-sm py-2.5 px-5 mt-5 mx-5  rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-lg">
+                                            class="focus:outline-none openModal text-white text-sm py-2.5 px-5 mt-5 mx-5  rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-lg"
+                                            data-target="#CategoryModal" data-id="{{ $category->id }}" data-name="{{ $category->name }}">
                                         Edit
                                     </button>
                                 </td>
@@ -132,6 +133,9 @@
             $('.openModal').on('click', function (e) {
                 var id = $(this).data('id');
                 var name = $(this).data('name');
+                var url = "{{ url('categories/update') }}/" + id;
+                $('#CategoryModal form').attr('action', url);
+                $('#CategoryModal form input[name="name"]').val(name);
                 $('#CategoryModal').removeClass('invisible');
             });
             $('.closeModal').on('click', function (e) {
