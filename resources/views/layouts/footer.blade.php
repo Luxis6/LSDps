@@ -1,5 +1,4 @@
-
-    <div class="container bg-red-400 shadow">
+<div class="bg-red-400 shadow">
         <div class="flex justify-center">
             <a href="{{route('home')}}" class="flex items-center py-5 px-2 text-white hover:text-white">
                 <svg class="h-6 w-6 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -18,4 +17,4 @@
                 </span>
             </a> | All rights reserved.
         </p>
-    </div>
+</div>

@@ -2,6 +2,80 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
+        <div class="fixed z-10 inset-0 invisible overflow-y-auto" aria-labelledby="modal-title" role="dialog"
+             aria-modal="true" id="PostModal">
+            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
+                <div
+                    class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-3/5">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="sm:items-start">
+                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                    Edit post
+                                </h3>
+                                <div class="mt-2">
+                                    <form action="" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <div>
+                                            <label class="w-20 text-right mr-8 font-bold">Title</label>
+                                            <div>
+                                                <input class="form-control w-full rounded" type="text" name="title" value=""
+                                                       class="input"
+                                                       placeholder="Title" minlength="5" maxlength="100" required/>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label class="w-20 text-right mr-8 font-bold">Content</label>
+                                            <div class="control">
+                                            <textarea class="form-control block w-full px-3 py-1.5 text-base w-full rounded" name="content"
+                                            placeholder="Content"
+                                            minlength="5" maxlength="2000" required rows="10">{{ old('content') }}</textarea>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label class="w-20 text-right mr-8 font-bold">Price</label>
+                                            <div class="control">
+                                                <input class="form-control w-full rounded" name="price" placeholder="price" type="number">
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label class="w-20 text-right mr-8 font-bold">Category</label>
+                                            <div class="control">
+                                                <div class="select">
+                                                    <select
+                                                        class="w-full block appearance-none bg-transparent bg-white px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                                        name="category" required>
+                                                        @foreach($categories as $category)
+                                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bg-white px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                            <button type="submit"
+                                                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                                Update
+                                            </button>
+                                            <button type="button"
+                                                    class="closeModal mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-100 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="flex flex-col-2">
             <div class="w-4/5">
                 <div class="md:w-full mx-auto space-y-4 grid px-10 py-2">
@@ -49,7 +123,28 @@
                         </div>
                     </div>
                     <div class="py-2 flex justify-center">
-                        <img class="w-3/5" src="{{$post->img}}" alt="image">
+                        <img class="pinterest-img w-3/5" src="{{$post->img}}" alt="image">
+                    </div>
+                    <div class="share-btn-container flex flex-row justify-center">
+                        <a href="#" class="facebook-btn px-1" style="font-size: 26px" target="_blank">
+                            <i class="fab fa-facebook" style="color: #1877f2"></i>
+                        </a>
+
+                        <a href="#" class="twitter-btn px-1" style="font-size: 26px" target="_blank">
+                            <i class="fab fa-twitter" style="color: #1da1f2"></i>
+                        </a>
+
+                        <a href="#" class="pinterest-btn px-1" style="font-size: 26px" target="_blank">
+                            <i class="fab fa-pinterest" style="color: #e60023"></i>
+                        </a>
+
+                        <a href="#" class="linkedin-btn px-1" style="font-size: 26px" target="_blank">
+                            <i class="fab fa-linkedin" style="color: #0077b5"></i>
+                        </a>
+
+                        <a href="#" class="whatsapp-btn px-1" style="font-size: 26px" target="_blank">
+                            <i class="fab fa-whatsapp" style="color: #25d366"></i>
+                        </a>
                     </div>
                     <div>
                         <h1 class="text-xl font-bold leading-7 text-gray-900 sm:text-2xl sm:truncate">About</h1>
@@ -97,19 +192,82 @@
                         </a>
 
                     @else
-                        <a href="{{route('posts.edit', $post->slug)}}" class="flex justify-center w-2/3 block rounded bg-transparent bg-blue-300 hover:bg-blue-500 py-2 font-bold shadow">
+                        <button type="button"
+                                class="openModal flex justify-center w-2/3 block rounded bg-transparent bg-blue-300 hover:bg-blue-500 py-2 font-bold shadow"
+                                data-target="#PostModal" data-id="{{ $post->id }}" data-slug="{{$post->slug}}" data-title="{{ $post->title }}" data-content="{{ $post->content }}" data-price="{{ $post->price }}" data-category="{{ $post->category }}">
                             Edit
-                        </a>
-
+                        </button>
                     @endif
                 </div>
             </aside>
         </div>
     </div>
-    <!--
+<!--
     <!—- ShareThis BEGIN -—>
     <script async
             src="https://platform-api.sharethis.com/js/sharethis.js#property=5eac0d0e3c3da40012262fdb&product=sticky-share-buttons"></script>
     <!—- ShareThis END -—>
     -->
+    <script>
+        const facebookBtn = document.querySelector(".facebook-btn");
+        const twitterBtn = document.querySelector(".twitter-btn");
+        const pinterestBtn = document.querySelector(".pinterest-btn");
+        const linkedinBtn = document.querySelector(".linkedin-btn");
+        const whatsappBtn = document.querySelector(".whatsapp-btn");
+
+        function init() {
+            const pinterestImg = document.querySelector(".pinterest-img");
+            let postUrl = encodeURI(document.location.href);
+            let postTitle = encodeURI("Hi everyone, please check this out: ");
+            let postImg = encodeURI(pinterestImg.src);
+
+            facebookBtn.setAttribute(
+                "href",
+                `https://www.facebook.com/sharer.php?u=${postUrl}`
+            );
+
+            twitterBtn.setAttribute(
+                "href",
+                `https://twitter.com/share?url=${postUrl}&text=${postTitle}`
+            );
+
+            pinterestBtn.setAttribute(
+                "href",
+                `https://pinterest.com/pin/create/bookmarklet/?media=${postImg}&url=${postUrl}&description=${postTitle}`
+            );
+
+            linkedinBtn.setAttribute(
+                "href",
+                `https://www.linkedin.com/shareArticle?url=${postUrl}&title=${postTitle}`
+            );
+
+            whatsappBtn.setAttribute(
+                "href",
+                `https://wa.me/?text=${postTitle} ${postUrl}`
+            );
+        }
+
+        init();
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.openModal').on('click', function (e) {
+                var slug = $(this).data('slug');
+                var title = $(this).data('title');
+                var content = $(this).data('content');
+                var price = $(this).data('price');
+                var category = $(this).data('category');
+                var url = "{{ url('posts/update') }}/" + slug;
+                $('#PostModal form').attr('action', url);
+                $('#PostModal form input[name="title"]').val(title);
+                $('#PostModal form textarea[name="content"]').val(content);
+                $('#PostModal form input[name="price"]').val(price);
+                $('#PostModal form select option[name="category"]').val(category);
+                $('#PostModal').removeClass('invisible');
+            });
+            $('.closeModal').on('click', function (e) {
+                $('#PostModal').addClass('invisible');
+            });
+        });
+    </script>
 @endsection

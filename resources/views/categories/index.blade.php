@@ -44,78 +44,78 @@
             </div>
         </div>
 
-        <div class="flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-1/2 lg:w-1/3 shadow-md sm:rounded-lg">
-                <div class="flex justify-center py-4">
-                    <h3 class="text-xl leading-6 font-medium text-gray-900">Categories</h3>
-                </div>
+        <div class="flex flex-col bg-red-100 rounded-lg shadow-md m-6 lg:w-2/5">
+            <div class="flex justify-center py-4">
+                <h3 class="text-xl leading-4 font-medium text-gray-900">Categories</h3>
+            </div>
+            <div>
                 <table class="min-w-full sm:w-1/2 lg:w-1/3">
-                    <thead class="bg-gray-50 dark:bg-gray-700">
+                    <thead class="bg-red-50 dark:bg-gray-700">
                     <tr>
                         <th scope="col"
                             class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                             Name
                         </th>
-                        <th scope="col" class="relative py-3 px-6">
-                            <span class="sr-only">Edit</span>
-                        </th>
-                        <th scope="col" class="relative py-3 px-6">
-                            <span class="sr-only">Delete</span>
-                        </th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach ($categories as $category)
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td class="py-4 px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $category->name }}
+                        <tr class="bg-red-100 border-b border-gray-300 dark:bg-gray-800 dark:border-gray-700 grid grid-rows-2 py-2 lg:grid-cols-2 lg:grid-rows-1 md:grid-cols-2 md:grid-rows-1">
+                            <td class="px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                @if($category->parent_id == NULL)
+                                    <i class="text-gray-400"></i>
+                                    {{ $category->name }}
+                                @else
+                                    <i class="text-gray-400">sub</i>
+                                    {{ $category->name }}
+                                @endif
                             </td>
-                            <div class="flex">
-                                <td class="py-4 px-1 text-sm font-medium text-right whitespace-nowrap">
-                                    <button type="button"
-                                            class="focus:outline-none openModal text-white text-sm py-2.5 px-5 mt-5 mx-5  rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-lg"
-                                            data-target="#CategoryModal" data-id="{{ $category->id }}" data-name="{{ $category->name }}">
-                                        Edit
+                            <td class="text-sm font-medium lg:text-right lg:flex lg:justify-end md:flex md:justify-end">
+                                <button type="button"
+                                        class="focus:outline-none openModal text-white text-sm py-2.5 px-5 mx-5 font-medium rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-md"
+                                        data-target="#CategoryModal" data-id="{{ $category->id }}"
+                                        data-name="{{ $category->name }}">
+                                    Edit
+                                </button>
+                                <form action="{{ route('category.destroy', $category->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg hover:shadow-md text-sm inline-flex items-center py-2.5 px-5 mx-5 text-center">
+                                        Delete
                                     </button>
-                                </td>
-                                <td>
-                                    <form action="{{ route('category.destroy', $category->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                                class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center py-2.5 px-5 mt-5 mx-5 text-center mr-2">
-                                            Delete
-                                        </button>
-                                    </form>
-                                </td>
-                            </div>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
-
+            </div>
         </div>
-        <div class="flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-1/2 lg:w-1/3">
-            <div class="flex justify-center">
-                <h3 class="text-xl leading-6 font-medium text-gray-900">Create category</h3>
+        <div class="flex flex-col bg-red-100 rounded-lg shadow-md w-auto h-auto m-6 overflow-hidden md:w-1/2 lg:w-2/5 h-64">
+            <div class="flex justify-center border border-b-gray-300">
+                <h3 class="py-4 text-xl leading-6 font-medium text-gray-900">Create category</h3>
             </div>
             <form action="{{ route('category.store') }}" method="POST" class="md:w-3/4 mx-auto space-y-4">
                 @csrf
-                <div class="shadow-md">
-                    <div class="flex items-center bg-red-300 border-b border-red-500 rounded-t-md">
+                <div class="px-4">
+                    <div class="flex items-center rounded-t-md">
                         <label class="w-20 text-right mr-8 font-bold">Parent category</label>
                         <select name="parent_id"
-                                class="block appearance-none bg-transparent bg-white border border-red-400 hover:border-red-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                class="w-52 block appearance-none bg-white px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                             <option value="">Select parent category</option>
                             @foreach ($categories as $category)
+                                @if($category->parent_id == NULL)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
 
-                    <div class="flex items-center bg-red-300 rounded-b-md mb-5">
+                    <div class="flex items-center rounded-b-md mb-5">
                         <label class="w-20 text-right mr-8 font-bold" for="name">Name</label>
                         <input
-                            class="p-4 pl-0 bg-transparent placeholder-red-500 border-transparent focus:border-transparent focus:ring-0 border border-red-300"
+                            class="rounded"
                             type="text" name="name" value="{{ old('name') }}" placeholder="name" required>
                     </div>
                 </div>

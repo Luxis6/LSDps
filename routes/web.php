@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\Category;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RatingController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,13 +23,17 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 Route::get('/', function () {
-    return view('home.index');
+    $posts = Post::all();
+    $categories = Category::all();
+    return view('home.index',
+        [
+            'posts' => $posts,
+            'categories' => $categories
+        ]);
 })->name('home');
 Route::middleware(['auth'])->group(function () {
-
     Route::middleware(['admin'])->group(function () {
-        //Categories
-        Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+        //Categories management
         Route::post('/categories/create', [CategoryController::class, 'store'])->name('category.store');
         Route::patch('/categories/update/{id}', [CategoryController::class, 'update'])->name('category.update');
         Route::delete('/categories/delete/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
@@ -35,6 +41,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    //Categories
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
     //Posts
     Route::get('/posts/create', [PostController::class,'create'])->name('posts.create');
     Route::post('/posts/store', [PostController::class,'store'])->name('posts.store');

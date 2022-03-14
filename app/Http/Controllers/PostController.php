@@ -64,6 +64,7 @@ class PostController extends Controller
     public function show($post)
     {
         $post = Post::where('slug', $post)->first();
+        $categories = Category::all();
         if (!$post) {
             abort(404);
         }
@@ -71,7 +72,8 @@ class PostController extends Controller
         // Pass current post to view
         return view('posts.show', [
             'post' => $post,
-            'rate' => $rate
+            'rate' => $rate,
+            'categories' => $categories
         ]);
     }
 

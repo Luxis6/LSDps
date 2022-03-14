@@ -28,7 +28,7 @@
             @auth
                 @if(\Illuminate\Support\Facades\Auth::user()->type == 2)
                 <li class="mx-4 my-6 md:my-0">
-                    <a href="{{ url('/categories') }}" class="text-md hover:text-red-600 duration-600">Categories</a>
+                    <a href="{{ url('/categories') }}" class="text-md hover:text-red-600 duration-600">Categories management</a>
                 </li>
                 @endif
                 <li class="mx-4 my-6 md:my-0">
