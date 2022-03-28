@@ -1,7 +1,8 @@
 runtime: php
 env: flex
 
-runtime_config: document_root: public
+runtime_config:
+document_root: public
 
 # Ensure we skip ".env", which is only for local development
 skip_files:
@@ -22,5 +23,4 @@ env_variables:
   APP_ENV: production
   APP_KEY: base64:gVPEihkE+Dgn30IBhxLpmohUV+/PrJ/KixPyULE2DfY=
   APP_NAME: "LSDps"
-
   LOG_LEVEL: debug
