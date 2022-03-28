@@ -24,3 +24,4 @@ env_variables:
   APP_KEY: base64:gVPEihkE+Dgn30IBhxLpmohUV+/PrJ/KixPyULE2DfY=
   APP_NAME: "LSDps"
   LOG_LEVEL: debug
+
