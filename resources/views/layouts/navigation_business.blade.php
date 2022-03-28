@@ -2,7 +2,7 @@
     <!-- Primary Navigation Menu -->
     <!-- Logo -->
     <div class="flex justify-between items-center">
-        <a class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900" href="{{ route('home') }}">
+        <a class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900" href="{{ route('business_home') }}">
             <svg class="h-6 w-6 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                  stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -25,62 +25,49 @@
     <!-- Navigation Primary-->
     <div class="w-full mt-2 lg:inline-flex lg:w-auto lg:mt-0" :class="{'hidden':!navbarOpen,'flex':navbarOpen}">
         <ul class="flex flex-col w-full space-y-2 lg:w-auto lg:flex-row lg:space-y-0 lg:space-x-2">
-            <li class="lg:mx-2 mx-4">
-                <a href="{{route('business_home')}}" class="text-md hover:text-red-600 duration-600" target="_blank">For Businesses & Applicants</a>
-            </li>
             @auth
-                @if(\Illuminate\Support\Facades\Auth::user()->type == 2)
-                    <li class="mx-4 lg:mx-0">
-                        <a href="{{ route('categories') }}" class="text-md hover:text-red-600 duration-600">Categories
-                            management</a>
-                    </li>
-                    <li class="mx-4">
-                        <a href="{{ route('admin.users') }}" class="text-md hover:text-red-600 duration-600">Users
-                            management</a>
-                    </li>
-                @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->type > 0)
-                        <li class="mx-4">
-                            <a href="{{route('posts.create')}}" class="text-md hover:text-red-600 duration-600">Create a
-                        Post</a>
-                        </li>
+                    <li class="lg:mx-0 mx-4">
+                        <a href="{{route('business_posts.create')}}" class="text-md hover:text-red-600 duration-600">Create a Business
+                            Post</a>
+                    </li>
                 @else
-                    <li class="mx-4">
-                      <a href="{{route('posts.create')}}" class="create_post text-md hover:text-red-600 duration-600">Create a
-                         Post</a>
+                    <li class="lg:mx-0 mx-4">
+                        <a href="{{route('business_posts.create')}}" class="create_post text-md hover:text-red-600 duration-600">Create a Business
+                            Post</a>
                     </li>
                 @endif
-                <!--Authentication-->
+            <!--Authentication-->
                 <li class="mx-4">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="flex items-center text-md font-medium hover:text-red-600 duration-600">
-                            <div>{{ Auth::user()->name }}</div>
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <button class="flex items-center text-md font-medium hover:text-red-600 duration-600">
+                                <div>{{ Auth::user()->name }}</div>
 
-                            <div class="ml-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                     viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                          clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
+                                <div class="ml-1">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                              clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                            </button>
+                        </x-slot>
 
-                    <x-slot name="content">
-                        <!--Authentication-->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
+                        <x-slot name="content">
+                            <!--Authentication-->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
 
-                            <x-dropdown-link :href="route('logout')"
-                                             onclick="event.preventDefault();
+                                <x-dropdown-link :href="route('logout')"
+                                                 onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        </x-slot>
+                    </x-dropdown>
                 </li>
             @else
                 <li class="mx-4 md:my-0">

@@ -4,7 +4,7 @@
     <div class="flex flex-col bg-red-100 rounded-lg w-auto h-auto shadow-md m-6 overflow-hidden shadow-md sm:rounded-lg">
         <h1 class="flex w-full lg:flex items-center justify-center border-b border-gray-300 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Create a new post</h1>
         <form method="post" action="{{ route('posts.store') }}" enctype="multipart/form-data"
-              class="md:w-full mx-auto space-y-4 grid justify-items-center">
+              class="lg:w-1/4 lg:mx-auto space-y-4 grid">
             @csrf
             <div>
                 <div>
@@ -40,7 +40,9 @@
                                 class="w-full block appearance-none bg-transparent bg-white px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                                 name="category" required>
                                 @foreach($categories as $category)
+                                    @if($category->parent_id != NULL)
                                     <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>

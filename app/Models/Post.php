@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Post extends Model
 {
     use HasFactory;
+    public $table = 'posts';
     protected $fillable = ['title', 'content', 'category', 'slug', 'user_id', 'price', 'img'];
     public function getRouteKeyName()
     {

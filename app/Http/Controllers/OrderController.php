@@ -22,12 +22,12 @@ class OrderController extends Controller
 
         $posts =
             DB::table('orders')
-                ->join('posts', 'orders.service', '=', 'posts.id')
+                ->join('posts', 'orders.post_id', '=', 'posts.id')
                 ->select('orders.id', 'posts.title')->where('posts.user_id', '=', $user)
                 ->get();
 
         $orders = DB::table('orders')
-            ->join('posts', 'orders.service', '=', 'posts.id')
+            ->join('posts', 'orders.post_id', '=', 'posts.id')
             ->select('orders.id', 'posts.title')
             ->where('orders.user_id', '=', $user)
             ->get();
@@ -59,10 +59,11 @@ class OrderController extends Controller
         $post = Post::where('slug', $data)->first();
         $order = new Order();
         $order->user_id = Auth::id();
+        $order->post_id = $post->id;
         $order->requirement = $request->input('requirements');
         $order->save();
 
-        return redirect(route('orders'));
+        return redirect(route('home'));
     }
 
     public function show(Order $order)

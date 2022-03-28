@@ -28,8 +28,8 @@ class RatingController extends Controller
                 $rating->user_id = Auth::id();
                 $rating->comment = $comment;
                 $rating->post_id = $post;
-
                 $rating->save();
+
             }
         }
         return redirect()->back();
@@ -45,9 +45,9 @@ class RatingController extends Controller
         $rts = null;
         //Pagal balsus
         if ($sort == 0) {
-            $rts = Rating::where('post_id', $post)->orderBy('vote')->get();
+            $rts = Rating::where('post_id', $post)->orderBy('vote', 'desc')->get();
         } elseif ($sort == 1) { //Data
-            $rts = Rating::where('post_id', $post)->orderBy('created_at')->get();
+            $rts = Rating::where('post_id', $post)->orderBy('created_at', 'desc')->get();
         }
 
         return view('ratings.show', [

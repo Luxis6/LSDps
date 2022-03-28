@@ -76,6 +76,12 @@ class PostController extends Controller
             'categories' => $categories
         ]);
     }
+    public function indexByCategory($main_slug,$slug)
+    {
+        $category = Category::where('slug', $slug)->first();
+        $posts = Post::where('category', $category->id)->get();
+        return view('posts.category.index', compact('posts'), ['category' => $category]);
+    }
 
     public function edit($post)
     {

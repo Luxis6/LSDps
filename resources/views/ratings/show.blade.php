@@ -1,15 +1,17 @@
-Latest
 <div>
     <span>
-        <form class="form-inline my-2 my-lg-0" action="{{route('sort')}}" method="post">
+        <form class="form-inline my-2 my-lg-0 flex lg:flex-row md:flex-row flex-col" action="{{route('sort')}}" method="post">
             @csrf
-            <select class="form-control mr-sm-2 w-1/5" name="sort" placeholder="Sort" aria-label="Sort" required>
-                <option value="0" @if(!Session::get('sort') == "1") selected @endif>By date</option>
-                <option value="1" @if(!Session::get('sort') == "0") selected @endif>By vote</option>
+            <select class="form-control mr-sm-2 lg:w-1/5 w-auto" name="sort" placeholder="Sort" aria-label="Sort" required>
+                <option value="0" @if(!Session::get('sort') == "1") selected @endif>Most votes</option>
+                <option value="1" @if(!Session::get('sort') == "0") selected @endif>Most recent</option>
             </select>
-            <button class="hover:text-green-500 my-2 my-sm-0" type="submit">Sort</button>
+            <div class="px-2 lg:py-0 py-2 flex justify-center">
+            <button class="flex justify-center block rounded bg-transparent bg-green-300 hover:bg-green-500 py-2 px-2 font-bold shadow" type="submit">Sort</button>
+            </div>
         </form>
     </span>
+    <h3 class="font-medium text-lg"> Comments</h3>
     <div class="courses-review-comments py-2">
         <h3>{{count($ratings)}} votes</h3>
         @foreach($ratings as $rating)
@@ -20,7 +22,7 @@ Latest
                         @for($i = 0; $i < $rating->vote; $i++)
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="w-6 h-6 text-yellow-300 fill-current hover:text-yellow-400"
+                                class="w-6 h-6 text-yellow-300 fill-current"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -35,6 +37,7 @@ Latest
                         @endfor
                         <span class="font-medium">{{\App\Models\User::find($rating->user_id)->name}}</span>
                     </div>
+                    <i class="text-sm">{{\Carbon\Carbon::parse($rating->created_at)->diffForHumans()}}</i>
                 </div>
                    @if($rating->comment != NULL && !empty($rating->comment))
                        <p class="text-gray-500 text-justify break-words">{{$rating->comment}}</p>

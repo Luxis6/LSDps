@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Order extends Model
 {
     use HasFactory;
+    public $table = 'orders';
     protected $fillable = ['requirement'];
     public function user(): BelongsTo
     {

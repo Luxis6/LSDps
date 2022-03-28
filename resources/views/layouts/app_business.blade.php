@@ -33,7 +33,7 @@
 <div class="flex flex-col h-screen min-h-screen">
     <div class="Header">
         <header>
-            @include('layouts.navigation')
+            @include('layouts.navigation_business')
         </header>
     </div>
     <div class="container flex-1">

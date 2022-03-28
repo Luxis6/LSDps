@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Kategorijos')
+@section('title', 'Categories')
 @section('content')
     <div class="flex flex-wrap justify-center">
         <div class="fixed z-10 inset-0 invisible overflow-y-auto" aria-labelledby="modal-title" role="dialog"
@@ -12,9 +12,9 @@
                     <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <div class="sm:flex sm:items-start">
                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                <h1 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
                                     Edit category
-                                </h3>
+                                </h1>
                                 <div class="mt-2">
                                     <form action="" method="POST">
                                         @csrf
@@ -44,9 +44,9 @@
             </div>
         </div>
 
-        <div class="flex flex-col bg-red-100 rounded-lg shadow-md m-6 lg:w-2/5">
+        <div class="flex flex-col bg-red-100 rounded-lg shadow-md m-6 lg:w-2/5 md:w-3/5 w-full">
             <div class="flex justify-center py-4">
-                <h3 class="text-xl leading-4 font-medium text-gray-900">Categories</h3>
+                <h1 class="text-xl leading-4 font-medium text-gray-900">Categories</h1>
             </div>
             <div>
                 <table class="min-w-full sm:w-1/2 lg:w-1/3">
@@ -60,7 +60,7 @@
                     </thead>
                     <tbody>
                     @foreach ($categories as $category)
-                        <tr class="bg-red-100 border-b border-gray-300 dark:bg-gray-800 dark:border-gray-700 grid grid-rows-2 py-2 lg:grid-cols-2 lg:grid-rows-1 md:grid-cols-2 md:grid-rows-1">
+                        <tr class="bg-red-100 border-b border-gray-300 dark:bg-gray-800 dark:border-gray-700 grid py-2 lg:grid-cols-2 md:grid-cols-2">
                             <td class="px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 @if($category->parent_id == NULL)
                                     <i class="text-gray-400"></i>
@@ -94,7 +94,7 @@
         </div>
         <div class="flex flex-col bg-red-100 rounded-lg shadow-md w-auto h-auto m-6 overflow-hidden md:w-1/2 lg:w-2/5 h-64">
             <div class="flex justify-center border border-b-gray-300">
-                <h3 class="py-4 text-xl leading-6 font-medium text-gray-900">Create category</h3>
+                <h1 class="py-4 text-xl leading-6 font-medium text-gray-900">Create category</h1>
             </div>
             <form action="{{ route('category.store') }}" method="POST" class="md:w-3/4 mx-auto space-y-4">
                 @csrf
@@ -102,7 +102,7 @@
                     <div class="flex items-center rounded-t-md">
                         <label class="w-20 text-right mr-8 font-bold">Parent category</label>
                         <select name="parent_id"
-                                class="w-52 block appearance-none bg-white px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                class="lg:w-52 w-40 block appearance-none bg-white px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                             <option value="">Select parent category</option>
                             @foreach ($categories as $category)
                                 @if($category->parent_id == NULL)
@@ -115,7 +115,7 @@
                     <div class="flex items-center rounded-b-md mb-5">
                         <label class="w-20 text-right mr-8 font-bold" for="name">Name</label>
                         <input
-                            class="rounded"
+                            class="rounded lg:w-52 w-40"
                             type="text" name="name" value="{{ old('name') }}" placeholder="name" required>
                     </div>
                 </div>
