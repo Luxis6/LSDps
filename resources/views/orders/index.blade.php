@@ -1,95 +1,94 @@
 @section('title', 'Orders')
 @extends('layouts.app')
-
 @section('content')
-
-    <div class="page-title-area item-bg2 jarallax" data-jarallax='{"speed": 0.3}'>
-        <div class="container">
-            <div class="page-title-content">
-                <ul>
-                    <li><a href="{{route('home')}}">{{__('page.home')}}</a></li>
-                    <li>{{__('user.my_account')}}</li>
-                    <li>{{__('orders.orders_tab')}}</li>
-                </ul>
+    <div class="flex justify-center flex-col lg:flex-row">
+        <div class="flex flex-col bg-red-100 rounded-lg shadow-md m-6 lg:w-2/5 md:w-3/5 w-auto overflow-y-auto">
+            <div class="flex justify-center py-4">
+                <h2 class="text-xl leading-4 font-medium text-gray-900">My orders</h2>
             </div>
+            <table class="min-w-full sm:w-1/2 lg:w-1/3">
+                <thead class="bg-red-50 dark:bg-gray-700">
+                <tr>
+                    <th scope="col"
+                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                        Post Title
+                    </th>
+                    <th scope="col"
+                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                        Order Requirement
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @forelse ($user_orders as $order)
+                    <tr>
+                        <td class="px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{$order->title}}
+                        </td>
+                        <td class="px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{$order->requirement}}
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            <h2 class="font-medium text-xl">I haven't ordered anything</h2>
+                        </td>
+                    </tr>
+                @endforelse
+                </tbody>
+            </table>
+        </div>
+        <div class="flex flex-col bg-red-100 rounded-lg shadow-md m-6 lg:w-2/5 md:w-3/5 w-auto overflow-y-auto">
+            <div class="flex justify-center py-4">
+                <h2 class="text-xl leading-4 font-medium text-gray-900">Ordered services from my posts</h2>
+            </div>
+            <table class="min-w-full sm:w-1/2 lg:w-1/3">
+                <thead class="bg-red-50 dark:bg-gray-700">
+                <tr>
+                    <th scope="col"
+                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                        Post Title
+                    </th>
+                    <th scope="col"
+                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                        Order Requirement
+                    </th>
+                    <th scope="col"
+                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                        Username
+                    </th>
+                    <th scope="col"
+                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                        Email
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @forelse ($user_posts as $post)
+                    <tr class="bg-red-100 border-b border-gray-300 dark:bg-gray-800 dark:border-gray-700 py-2 ">
+                        <td class="px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{$post->title}}
+                        </td>
+                        <td class="px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{$post->requirement}}
+                        </td>
+                        <td class="px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{\App\Models\User::find($post->user_id)->name}}
+                        </td>
+                        <td class="px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{\App\Models\User::find($post->user_id)->email}}
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            <h2 class="font-medium text-xl">No ordered services </h2>
+                        </td>
+                    </tr>
+                @endforelse
+                </tbody>
+            </table>
         </div>
     </div>
-
-
-    <section class="my-account-area ptb-100">
-        <div class="container">
-            <div class="myAccount-navigation">
-                <ul>
-                    <li><a href="{{route('user.show', Auth::id())}}"><i class="bx bx-edit"></i> {{__('user.my_account')}}</a></li>
-                    <li><a href="{{route('user.edit', Auth::id())}}"><i class="bx bx-edit"></i> {{__('user.edit')}}</a></li>
-                    <li><a href="{{route('orders')}}" class="active"><i class="bx bx-cart"></i> {{__('orders.orders_tab')}}</a></li>
-                </ul>
-            </div>
-            <div class="myAccount-content">
-                <div class="orders-table table-responsive">
-                    <div class="card">
-                        <div class="card-header">
-                            <ul class="nav nav-tabs card-header-tabs pull-right"  id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="true">{{__('orders.orders_tab')}}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="service-tab" data-toggle="tab" href="#service" role="tab" aria-controls="service" aria-selected="false">{{__('orders.services_tab')}}</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="orders" role="tabpanel" aria-labelledby="orders-tab">
-                                    <table class="table">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>{{__('posts.Title')}}</th>
-                                            <th>{{__('orders.order_details')}}</th>
-                                        </tr>
-                                        @forelse ($orders as $order)
-                                            <tr>
-                                                <td>
-                                                    {{$order->id}}
-                                                </td>
-                                                <td>
-                                                    {{$order->title}}
-                                                </td>
-                                                <td>
-                                                    <a href="{{route('orders.view', $order->id)}}"><button class="btn btn-primary">{{__('orders.order_details')}}</button></a>
-                                                </td>
-                                            </tr>
-                                        @empty
-                                            {{__('orders.no_orders')}}
-                                        @endforelse
-                                    </table>
-                                </div>
-                                <div class="tab-pane fade" id="service" role="tabpanel" aria-labelledby="service-tab">
-                                    <table class="table">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>{{__('posts.Title')}}</th>
-                                        </tr>
-                                        @forelse ($services as $order)
-                                            <tr>
-                                                <td>
-                                                    {{$order->id}}
-                                                </td>
-                                                <td>
-                                                    {{$order->title}}
-                                                </td>
-                                            </tr>
-                                        @empty
-                                            {{__('orders.no_services')}}
-                                        @endforelse
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 @endsection

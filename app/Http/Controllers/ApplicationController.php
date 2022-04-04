@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\Business_Post;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ApplicationController extends Controller
 {
@@ -15,7 +18,10 @@ class ApplicationController extends Controller
     }
     public function index()
     {
-        //
+        $user = Auth::id();
+        $business_posts = Business_Post::where('user_id', $user)->get();
+        $applications = Application::all();
+        return view('applications.index', ['applications'=> $applications, 'business_posts'=> $business_posts,]);
     }
 
     public function create(string $slug)
@@ -31,6 +37,10 @@ class ApplicationController extends Controller
         $application->user_id = Auth::id();
         $application->business_post_id = $business_post->id;
         $application->phone = $request->input('phone');
+        /*$validated = $request->validate([
+            'cv' => 'required|file|max:5000|mimes:pdf,docx,doc',
+        ]);
+        $file = $validated['cv'];*/
         $file = $request->file('cv');
         $destinationPath = 'assets/files/business_posts';
         $file->move($destinationPath, $file->getClientOriginalName());

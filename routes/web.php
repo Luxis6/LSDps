@@ -63,6 +63,7 @@ Route::middleware(['auth'])->group(function () {
         //Applications
         Route::get('application/{id}', [ApplicationController::class,'create'])->name('application');
         Route::post('applications/store/{id}', [ApplicationController::class,'store'])->name('applications.store');
+        Route::get('business_posts_applications/', [ApplicationController::class,'index'])->name('applications.index.posts');
     });
     //Categories
     Route::get('/categories/{slug}', [CategoryController::class, 'indexSub'])->name('subCategory');

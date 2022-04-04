@@ -19,7 +19,7 @@
                     <div>
                         <label class="w-20 text-right mr-8 font-bold">CV</label>
                         <div>
-                            <input class="form-control" type="file" name="cv" required/>
+                            <input class="form-control" type="file" name="cv" accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required/>
                         </div>
                     </div>
                     @if (!isset($application))

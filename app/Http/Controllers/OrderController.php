@@ -20,21 +20,21 @@ class OrderController extends Controller
     {
         $user = Auth::id();
 
-        $posts =
+        $user_posts =
             DB::table('orders')
                 ->join('posts', 'orders.post_id', '=', 'posts.id')
-                ->select('orders.id', 'posts.title')->where('posts.user_id', '=', $user)
+                ->select('posts.title', 'orders.requirement', 'orders.user_id')->where('posts.user_id', '=', $user)
                 ->get();
 
-        $orders = DB::table('orders')
+        $user_orders = DB::table('orders')
             ->join('posts', 'orders.post_id', '=', 'posts.id')
-            ->select('orders.id', 'posts.title')
+            ->select('posts.title', 'orders.requirement')
             ->where('orders.user_id', '=', $user)
             ->get();
 
         return view('orders.index', [
-            'orders' => $orders,
-            'posts' => $posts
+            'user_orders' => $user_orders,
+            'user_posts' => $user_posts
         ]);
     }
 
