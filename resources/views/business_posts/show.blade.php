@@ -23,7 +23,6 @@
                                             <label class="w-20 text-right mr-8 font-bold">Title</label>
                                             <div>
                                                 <input class="form-control w-full rounded" type="text" name="title"
-                                                       class="input"
                                                        placeholder="Title" minlength="5" maxlength="100" required/>
                                             </div>
                                         </div>
@@ -35,8 +34,10 @@
                                                         class="w-full block appearance-none bg-transparent bg-white px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                                                         name="category" required>
                                                         @foreach($categories as $category)
+                                                            @if($category->parent_id == NULL)
                                                             <option
                                                                 value="{{$category->id}}">{{$category->name}}</option>
+                                                            @endif
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -78,7 +79,6 @@
                                                 <div>
                                                     <input class="form-control w-full rounded" type="text"
                                                            name="job_salary"
-                                                           class="input"
                                                            placeholder="Salary" minlength="5" maxlength="100" required/>
                                                 </div>
                                             </div>
@@ -101,7 +101,6 @@
                                             <label class="w-20 text-right mr-8 font-bold">City</label>
                                             <div>
                                                 <input class="form-control w-full rounded" type="text" name="city"
-                                                       class="input"
                                                        placeholder="City" minlength="5" maxlength="100" required/>
                                             </div>
                                         </div>
@@ -110,7 +109,6 @@
                                             <div>
                                                 <input class="form-control w-full rounded" type="text"
                                                        name="business_link"
-                                                       class="input"
                                                        placeholder="Business Link" minlength="5" maxlength="500"
                                                        required/>
                                             </div>

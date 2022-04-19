@@ -18,7 +18,7 @@ class Business_PostController extends Controller
     public function index()
     {
         // Get all Posts, ordered by the newest first
-        $business_posts = Business_Post::latest()->get();
+        $business_posts = Business_Post::where('user_id',Auth::id())->get();
 
         // Pass Post Collection to view
         return view('business_posts.index', compact('business_posts'));

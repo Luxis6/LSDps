@@ -13,12 +13,13 @@
                             <div class="border rounded-lg overflow-hidden shadow-lg">
                                 <div class="{{\App\Models\Category::find($business_post->category)->slug}}">
                                     <div class="">
-                                        <a href="{{ route('business_posts.show', [$business_post->slug]) }}" class="d-block"></a>
+                                        <a href="{{ route('business_posts.show', [$business_post->slug]) }}" class="d-block" target="_blank"></a>
                                         <div class="py-4">
                                             <div>
                                                 <h3 class="flex justify-center"><a
                                                         href="{{ route('business_posts.show', [$business_post->slug]) }}"
-                                                        class="py-2 text-md font-bold leading-7 text-gray-900 sm:text-xl break-words px-2">{{$business_post->title}}</a>
+                                                        class="py-2 text-md font-bold leading-7 text-gray-900 sm:text-xl break-words px-2"
+                                                        target="_blank">{{$business_post->title}}</a>
                                                 </h3>
                                             </div>
                                             <div>

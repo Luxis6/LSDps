@@ -59,6 +59,9 @@
                             <x-dropdown-link :href="route('applications.index.posts')">
                                 {{__('Job applications')}}
                             </x-dropdown-link>
+                            <x-dropdown-link :href="route('business_posts')">
+                                {{__('My Business Posts')}}
+                            </x-dropdown-link>
                             <!--Authentication-->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

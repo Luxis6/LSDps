@@ -13,14 +13,15 @@
                             <div class="border rounded-lg overflow-hidden shadow-lg">
                                 <div class="{{\App\Models\Category::find($post->category)->slug}}">
                                     <div class="">
-                                        <a href="{{ route('posts.show', [$post->slug]) }}" class="d-block"><img
+                                        <a href="{{ route('posts.show', [$post->slug]) }}" class="d-block" target="_blank"><img
                                                 src="{{$post->img}}" alt="image"
                                                 class="lg:h-72 md:h-48 w-full object-cover object-center"></a>
                                         <div class="py-4">
                                             <div>
                                                 <h3 class="flex justify-center"><a
                                                         href="{{ route('posts.show', [$post->slug]) }}"
-                                                        class="py-2 text-md font-bold leading-7 text-gray-900 sm:text-xl sm:truncate">{{$post->title}}</a>
+                                                        class="py-2 text-md font-bold leading-7 text-gray-900 sm:text-xl sm:truncate"
+                                                        target="_blank">{{$post->title}}</a>
                                                 </h3>
                                             </div>
                                             <div>
@@ -55,7 +56,13 @@
                                                         </div>
                                                     @endif
                                                 </div>
-                                                <p class="break-words">{{substr($post->content,0,100)}}...</p>
+                                                <p class="break-words">
+                                                    @if(strlen($post->content) > 100)
+                                                        {{substr($post->content,0,100)}}...
+                                                    @else
+                                                        {{$post->content}}
+                                                    @endif
+                                                </p>
                                             </div>
                                             <div class="text-right">
                                                 <h1 class="price text-sm font-bold leading-7 text-gray-900 sm:text-md sm:truncate px-2">

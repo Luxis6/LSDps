@@ -1,4 +1,4 @@
-@section('title', 'Posts')
+@section('title', 'Business Posts')
 @extends('layouts.app_business')
 
 @section('content')
@@ -15,7 +15,7 @@
                             <div>
                                 <h3 class="flex justify-center"><a
                                         href="{{ route('business_posts.show', [$business_post->slug]) }}"
-                                        class="py-2 text-md font-bold leading-7 text-gray-900 sm:text-xl break-words">{{$business_post->title}}</a>
+                                        class="py-2 text-md font-bold leading-7 text-gray-900 sm:text-xl break-words" target="_blank">{{$business_post->title}}</a>
                                 </h3>
                             </div>
                             <div class="px-2">

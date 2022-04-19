@@ -40,12 +40,14 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::middleware(['client'])->group(function () {
         //Posts
+        Route::get('/posts', [PostController::class,'index'])->name('posts');
         Route::get('/posts/create', [PostController::class,'create'])->name('posts.create');
         Route::post('/posts/store', [PostController::class,'store'])->name('posts.store');
         Route::delete('/posts/destroy/{slug}', [PostController::class,'destroy'])->name('posts.destroy');
         Route::get('/posts/edit/{slug}', [PostController::class,'edit'])->name('posts.edit');
         Route::patch('/posts/update/{slug}', [PostController::class,'update'])->name('posts.update');
         //BusinessPosts
+        Route::get('/business_posts', [Business_PostController::class,'index'])->name('business_posts');
         Route::get('/business_posts/create', [Business_PostController::class,'create'])->name('business_posts.create');
         Route::post('/business_posts/store', [Business_PostController::class,'store'])->name('business_posts.store');
         Route::delete('/business_posts/destroy/{slug}', [Business_PostController::class,'destroy'])->name('business_posts.destroy');
@@ -68,11 +70,9 @@ Route::middleware(['auth'])->group(function () {
     //Categories
     Route::get('/categories/{slug}', [CategoryController::class, 'indexSub'])->name('subCategory');
     //Posts
-    Route::get('/posts', [PostController::class,'index'])->name('posts.index');
     Route::get('/posts/{slug}', [PostController::class,'show'])->name('posts.show');
     Route::get('/categories/{main_slug}/{slug}', [PostController::class,'indexByCategory'])->name('category.posts.index');
     //Business Posts
-    Route::get('/business_posts', [Business_PostController::class,'index'])->name('business_posts.index');
     Route::get('/business_posts/{slug}', [Business_PostController::class,'show'])->name('business_posts.show');
     Route::get('/business_posts/categories/{slug}', [Business_PostController::class,'indexByCategory'])->name('category.business_posts.index');
 });
