@@ -13,43 +13,43 @@
                         <div class="sm:items-start">
                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                 <h1 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                                    Edit post
+                                    {{__('page.Edit post')}}
                                 </h1>
                                 <div class="mt-2">
                                     <form action="" method="POST">
                                         @csrf
                                         @method('PATCH')
                                         <div>
-                                            <label class="w-20 text-right mr-8 font-bold">Title</label>
+                                            <label class="w-20 text-right mr-8 font-bold">{{__('page.Title')}}</label>
                                             <div>
                                                 <input class="form-control w-full rounded" type="text" name="title"
                                                        value=""
-                                                       placeholder="Title" minlength="5" maxlength="100" required/>
+                                                       placeholder="{{__('page.Title')}}" minlength="5" maxlength="100" required/>
                                             </div>
                                         </div>
 
                                         <div>
-                                            <label class="w-20 text-right mr-8 font-bold">Content</label>
+                                            <label class="w-20 text-right mr-8 font-bold">{{__('page.Content')}}</label>
                                             <div class="control">
                                             <textarea
                                                 class="form-control block w-full px-3 py-1.5 text-base w-full rounded"
                                                 name="content"
-                                                placeholder="Content"
+                                                placeholder="{{__('page.Content')}}"
                                                 minlength="5" maxlength="2000" required
                                                 rows="10">{{ old('content') }}</textarea>
                                             </div>
                                         </div>
 
                                         <div>
-                                            <label class="w-20 text-right mr-8 font-bold">Price</label>
+                                            <label class="w-20 text-right mr-8 font-bold">{{__('page.Price')}}</label>
                                             <div class="control">
                                                 <input class="form-control w-full rounded" name="price"
-                                                       placeholder="price" type="number">
+                                                       placeholder="{{__('page.Price')}}" type="number">
                                             </div>
                                         </div>
 
                                         <div>
-                                            <label class="w-20 text-right mr-8 font-bold">Category</label>
+                                            <label class="w-20 text-right mr-8 font-bold">{{__('page.Category')}}</label>
                                             <div class="control">
                                                 <div class="select">
                                                     <select
@@ -68,11 +68,11 @@
                                         <div class="bg-white px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                             <button type="submit"
                                                     class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
-                                                Update
+                                                {{__('page.buttons.Update')}}
                                             </button>
                                             <button type="button"
                                                     class="closeModal mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-100 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                                                Close
+                                                {{__('page.buttons.Close')}}
                                             </button>
                                         </div>
                                     </form>
@@ -153,7 +153,7 @@
                         </a>
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold leading-7 text-gray-900 sm:text-2xl sm:truncate">About</h1>
+                        <h1 class="text-xl font-bold leading-7 text-gray-900 sm:text-2xl sm:truncate">{{__('page.About')}}</h1>
                         <div class="">
                             <p class="text-sm leading-7 text-gray-900 text-justify break-words break-all">{{$post->content}}</p>
                         </div>
@@ -162,32 +162,32 @@
                 <div class="px-10">
                     <div class="row">
                         <div class="col-md-6">
-                            @if(Auth::user()->type > 0)
+                            @if(Auth::user()->type > 0 && $post->user_id != Auth::id())
                                 @if(!\App\Http\Services\RatingsService::voted(Auth::id(), $post->id))
                                     <form method="post" action="{{route('vote', $post->id)}}"
                                           class="flex flex-col lg:w-1/2 w-auto">
                                         @csrf
                                         <select name="vote" class="form-control px-2" required>
-                                            <option selected disabled value="">Choose vote</option>
+                                            <option selected disabled value="">{{__('page.Choose a vote')}}</option>
                                             <?php
                                             for ($i = 1; $i <= 5; $i++)
                                                 if($i == 1) {
-                                                        echo '<option value="' . $i . '">' . $i . ' ' . 'star' . '</option>';
+                                                        echo '<option value="' . $i . '">' . $i . ' ' . __('page.star') . '</option>';
                                                 }
                                                 else{
-                                                    echo '<option value="' . $i . '">' . $i . ' ' . 'stars' . '</option>';
+                                                    echo '<option value="' . $i . '">' . $i . ' ' . __('page.stars') . '</option>';
                                                 }
                                             ?>
                                         </select>
                                         <!--<div id="rateYo" class="py-2"></div>
                                         <input type="hidden" id="vote" name="vote" required>-->
                                         <textarea type="text" name="comment" class="form-control"
-                                                  placeholder="Your comment"
+                                                  placeholder="{{__('page.Your comment')}}"
                                                   oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
                                         <div class="flex justify-center py-4">
                                             <input type="submit"
                                                    class="form-control flex justify-center lg:w-1/3 w-1/2 block rounded bg-transparent bg-yellow-300 hover:bg-yellow-500 py-2 font-bold shadow"
-                                                   value="Vote"/>
+                                                   value="{{__('page.Vote')}}"/>
                                         </div>
 
                                     </form>
@@ -200,10 +200,14 @@
             </div>
             <aside class="bg-white w-2/5 max-h-40 m-4 sticky shadow" style="position: sticky; top: 2rem">
                 <div class="flex justify-center border-b border-gray-300 bg-gray-100">
-                    <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Order</h1>
+                    @if($post->user_id != Auth::id())
+                        <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate py-2">{{__('page.To Order')}}</h1>
+                    @else
+                        <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate py-2">{{__('page.Edit post')}}</h1>
+                    @endif
                 </div>
                 <div class="flex lg:flex-row md:flex-row  items-center justify-center border-b border-gray-300">
-                    <h2 class="text-sm font-bold leading-7 text-gray-900 sm:text-md sm:truncate">Price:</h2>
+                    <h2 class="text-sm font-bold leading-7 text-gray-900 sm:text-md sm:truncate">{{__('page.Price')}}:</h2>
                     <h2 class="price text-sm font-bold leading-7 text-gray-900 sm:text-md sm:truncate px-2">
                         {{$post->price}} &euro;</h2>
                 </div>
@@ -212,7 +216,7 @@
                         @if($post->user_id != Auth::id())
                             <a href="{{route('order', $post->slug)}}"
                                class="flex justify-center w-2/3 block rounded bg-transparent bg-green-300 hover:bg-green-500 py-2 font-bold shadow">
-                                Continue
+                                {{__('page.buttons.Continue')}}
                             </a>
 
                         @else
@@ -221,13 +225,13 @@
                                     data-target="#PostModal" data-id="{{ $post->id }}" data-slug="{{$post->slug}}"
                                     data-title="{{ $post->title }}" data-content="{{ $post->content }}"
                                     data-price="{{ $post->price }}" data-category="{{ $post->category }}">
-                                Edit
+                                {{__('page.buttons.Edit')}}
                             </button>
                         @endif
                     @else
                         <button
                             class="btn_continue flex justify-center w-2/3 block rounded bg-transparent bg-green-300 hover:bg-green-500 py-2 font-bold shadow">
-                            Continue
+                            {{__('page.buttons.Continue')}}
                         </button>
                     @endif
                 </div>

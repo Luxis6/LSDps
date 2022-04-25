@@ -1,21 +1,21 @@
-@section('title', 'Orders')
+@section('title', __('page.Orders'))
 @extends('layouts.app')
 @section('content')
     <div class="flex justify-center flex-col lg:flex-row">
-        <div class="flex flex-col bg-red-100 rounded-lg shadow-md m-6 lg:w-2/5 md:w-3/5 w-auto overflow-y-auto">
+        <div class="flex flex-col bg-red-100 rounded-lg shadow-md m-6 lg:w-1/3 md:w-3/5 w-auto overflow-y-auto">
             <div class="flex justify-center py-4">
-                <h2 class="text-xl leading-4 font-medium text-gray-900">My orders</h2>
+                <h2 class="text-xl leading-4 font-medium text-gray-900">{{__('page.My orders')}}</h2>
             </div>
-            <table class="min-w-full sm:w-1/2 lg:w-1/3">
+            <table class="min-w-full sm:w-1/2 lg:w-1/3 md:w-1/3">
                 <thead class="bg-red-50 dark:bg-gray-700">
                 <tr>
                     <th scope="col"
                         class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                        Post Title
+                        {{__('page.Post Title')}}
                     </th>
                     <th scope="col"
                         class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                        Order Requirement
+                        {{__('page.Order Requirements')}}
                     </th>
                 </tr>
                 </thead>
@@ -25,42 +25,42 @@
                         <td class="px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{$order->title}}
                         </td>
-                        <td class="px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <td class="px-6 text-md font-medium text-gray-900 dark:text-white break-words">
                             {{$order->requirement}}
                         </td>
                     </tr>
                 @empty
                     <tr>
                         <td colspan="2" class="text-center">
-                            <h2 class="font-medium text-xl">I haven't ordered anything</h2>
+                            <h2 class="font-medium text-xl">{{__("page.I haven't ordered anything")}}</h2>
                         </td>
                     </tr>
                 @endforelse
                 </tbody>
             </table>
         </div>
-        <div class="flex flex-col bg-red-100 rounded-lg shadow-md m-6 lg:w-2/5 md:w-3/5 w-auto overflow-y-auto">
+        <div class="flex flex-col bg-red-100 rounded-lg shadow-md m-6 lg:w-3/5 md:w-3/5 w-auto overflow-y-auto">
             <div class="flex justify-center py-4">
-                <h2 class="text-xl leading-4 font-medium text-gray-900">Ordered services from my posts</h2>
+                <h2 class="text-xl leading-4 font-medium text-gray-900">{{__('page.Ordered services from my posts')}}</h2>
             </div>
             <table class="min-w-full sm:w-1/2 lg:w-1/3">
                 <thead class="bg-red-50 dark:bg-gray-700">
                 <tr>
                     <th scope="col"
                         class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                        Post Title
+                        {{__('page.Post Title')}}
                     </th>
                     <th scope="col"
                         class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                        Order Requirement
+                        {{__('page.Order Requirements')}}
                     </th>
                     <th scope="col"
                         class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                        Username
+                        {{__('page.Username')}}
                     </th>
                     <th scope="col"
                         class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                        Email
+                        {{__('page.Email')}}
                     </th>
                 </tr>
                 </thead>
@@ -70,7 +70,7 @@
                         <td class="px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{$post->title}}
                         </td>
-                        <td class="px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <td class="px-6 text-md font-medium text-gray-900 break-words dark:text-white">
                             {{$post->requirement}}
                         </td>
                         <td class="px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -83,7 +83,7 @@
                 @empty
                     <tr>
                         <td colspan="2" class="text-center">
-                            <h2 class="font-medium text-xl">No ordered services </h2>
+                            <h2 class="font-medium text-xl">{{__('page.No ordered services')}} </h2>
                         </td>
                     </tr>
                 @endforelse

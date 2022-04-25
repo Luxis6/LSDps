@@ -1,4 +1,4 @@
-@section('title', 'Posts')
+@section('title', __('page.Posts'))
 @extends('layouts.app')
 
 @section('content')
@@ -68,7 +68,7 @@
             @else
                 <div class="flex justify-center col-span-4">
                 <h2 class="font-medium text-xl">
-                    No posts yet
+                    {{__('page.No posts yet')}}
                 </h2>
                 </div>
             @endif

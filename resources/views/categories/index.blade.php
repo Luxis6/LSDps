@@ -13,7 +13,7 @@
                         <div class="sm:flex sm:items-start">
                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                 <h1 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                                    Edit category
+                                    {{__('page.Edit category')}}
                                 </h1>
                                 <div class="mt-2">
                                     <form action="" method="POST">
@@ -22,17 +22,17 @@
                                         <div>
                                             <div>
                                                 <input type="text" name="name" class="rounded" value=""
-                                                       placeholder="name" required>
+                                                       placeholder="{{__('page.category.Name')}}" required>
                                             </div>
                                         </div>
                                         <div class="bg-white px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                             <button type="submit"
                                                     class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
-                                                Update
+                                                {{__('page.buttons.Update')}}
                                             </button>
                                             <button type="button"
                                                     class="closeModal mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-100 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                                                Close
+                                                {{__('page.buttons.Close')}}
                                             </button>
                                         </div>
                                     </form>
@@ -46,7 +46,7 @@
 
         <div class="flex flex-col bg-red-100 rounded-lg shadow-md m-6 lg:w-2/5 md:w-3/5 w-full">
             <div class="flex justify-center py-4">
-                <h1 class="text-xl leading-4 font-medium text-gray-900">Categories</h1>
+                <h1 class="text-xl leading-4 font-medium text-gray-900">{{__('page.Categories')}}</h1>
             </div>
             <div>
                 <table class="min-w-full sm:w-1/2 lg:w-1/3">
@@ -54,7 +54,7 @@
                     <tr>
                         <th scope="col"
                             class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                            Name
+                            {{__('page.category.Name')}}
                         </th>
                     </tr>
                     </thead>
@@ -75,14 +75,14 @@
                                         class="focus:outline-none openModal text-white text-sm py-2.5 px-5 mx-5 font-medium rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-md"
                                         data-target="#CategoryModal" data-id="{{ $category->id }}"
                                         data-name="{{ $category->name }}">
-                                    Edit
+                                    {{__('page.buttons.Edit')}}
                                 </button>
                                 <form action="{{ route('category.destroy', $category->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
                                             class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg hover:shadow-md text-sm inline-flex items-center py-2.5 px-5 mx-5 text-center">
-                                        Delete
+                                        {{__('page.buttons.Delete')}}
                                     </button>
                                 </form>
                             </td>
@@ -94,16 +94,16 @@
         </div>
         <div class="flex flex-col bg-red-100 rounded-lg shadow-md w-auto h-auto m-6 overflow-hidden md:w-1/2 lg:w-2/5 h-64">
             <div class="flex justify-center border border-b-gray-300">
-                <h1 class="py-4 text-xl leading-6 font-medium text-gray-900">Create category</h1>
+                <h1 class="py-4 text-xl leading-6 font-medium text-gray-900">{{__('page.Create category')}}</h1>
             </div>
             <form action="{{ route('category.store') }}" method="POST" class="md:w-3/4 mx-auto space-y-4">
                 @csrf
                 <div class="px-4">
                     <div class="flex items-center rounded-t-md">
-                        <label class="w-20 text-right mr-8 font-bold">Parent category</label>
+                        <label class="w-20 text-right mr-8 font-bold">{{__('page.Parent category')}}</label>
                         <select name="parent_id"
                                 class="lg:w-52 w-40 block appearance-none bg-white px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                            <option value="">Select parent category</option>
+                            <option value="">{{__('page.Select parent category')}}</option>
                             @foreach ($categories as $category)
                                 @if($category->parent_id == NULL)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -113,16 +113,16 @@
                     </div>
 
                     <div class="flex items-center rounded-b-md mb-5">
-                        <label class="w-20 text-right mr-8 font-bold" for="name">Name</label>
+                        <label class="w-20 text-right mr-8 font-bold" for="name">{{__('page.category.Name')}}</label>
                         <input
                             class="rounded lg:w-52 w-40"
-                            type="text" name="name" value="{{ old('name') }}" placeholder="name" required>
+                            type="text" name="name" value="{{ old('name') }}" placeholder="{{__('page.category.Name')}}" required>
                     </div>
                 </div>
                 <div class="flex justify-center">
                     <button type="submit"
                             class="w-20 block rounded bg-transparent bg-green-300 hover:bg-green-500 py-2 font-bold shadow">
-                        Create
+                        {{__('page.buttons.Create')}}
                     </button>
                 </div>
             </form>

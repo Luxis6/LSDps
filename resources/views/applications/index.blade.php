@@ -1,12 +1,12 @@
 @extends('layouts.app_business')
-@section('title', 'Applications')
+@section('title', __('page.Applications'))
 @section('content')
     <div class="flex justify-center py-4">
-        <h1 class="text-3xl leading-4 font-medium text-gray-900">Applications</h1>
+        <h1 class="text-3xl leading-4 font-medium text-gray-900">{{__('page.Applications')}}</h1>
     </div>
     <div class="grid grid-cols-1 lg:justify-items-center">
     @foreach ($business_posts as $business_post)
-    <div class="flex flex-col bg-red-100 rounded-lg shadow-md m-6 lg:w-2/5 md:w-3/5 w-auto overflow-y-auto">
+    <div class="flex flex-col bg-red-100 rounded-lg shadow-md m-6 lg:w-1/2 md:w-1/2 sm:w-3/5 w-auto overflow-y-auto">
         <div class="flex justify-center py-4">
             <h2 class="text-xl leading-4 font-medium text-gray-900">{{$business_post->title}}</h2>
         </div>
@@ -16,15 +16,15 @@
                 <tr>
                     <th scope="col"
                         class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                        Name
+                        {{__('page.Name')}}
                     </th>
                     <th scope="col"
                         class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                        Email
+                        {{__('page.Email')}}
                     </th>
                     <th scope="col"
                         class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                        Phone
+                        {{__('page.Phone')}}
                     </th>
                     <th scope="col"
                         class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
@@ -47,7 +47,7 @@
                         </td>
                         <td class="px-6 text-md font-medium text-red-600 hover:underline whitespace-nowrap dark:text-white">
                             <a href="{{$application->cv}}" download>
-                                Download
+                                {{__('page.buttons.Download')}}
                             </a>
                         </td>
                     </tr>

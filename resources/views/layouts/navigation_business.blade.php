@@ -28,13 +28,11 @@
             @auth
                 @if(\Illuminate\Support\Facades\Auth::user()->type > 0)
                     <li class="lg:mx-0 mx-4">
-                        <a href="{{route('business_posts.create')}}" class="text-md hover:text-red-600 duration-600">Create a Business
-                            Post</a>
+                        <a href="{{route('business_posts.create')}}" class="text-md hover:text-red-600 duration-600">{{__('navigation_business.Create a Business Post')}}</a>
                     </li>
                 @else
                     <li class="lg:mx-0 mx-4">
-                        <a href="{{route('business_posts.create')}}" class="create_post text-md hover:text-red-600 duration-600">Create a Business
-                            Post</a>
+                        <a href="{{route('business_posts.create')}}" class="create_post text-md hover:text-red-600 duration-600">{{__('navigation_business.Create a Business Post')}}</a>
                     </li>
                 @endif
             <!--Authentication-->
@@ -57,10 +55,10 @@
 
                         <x-slot name="content">
                             <x-dropdown-link :href="route('applications.index.posts')">
-                                {{__('Job applications')}}
+                                {{__('navigation_business.Job applications')}}
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('business_posts')">
-                                {{__('My Business Posts')}}
+                                {{__('navigation_business.My Business Posts')}}
                             </x-dropdown-link>
                             <!--Authentication-->
                             <form method="POST" action="{{ route('logout') }}">

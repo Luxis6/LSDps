@@ -1,4 +1,4 @@
-@section('title', 'Business Posts')
+@section('title', __('page.Business Posts'))
 @extends('layouts.app_business')
 
 @section('content')
@@ -31,15 +31,15 @@
                             <div>
                                 @if($business_post->job_type == 1)
                                     <h3 class="flex justify-center font-medium">
-                                        Internship
+                                        {{__('page.Internship')}}
                                     </h3>
                                 @elseif($business_post->job_type == 2)
                                     <h3 class="flex justify-center font-medium">
-                                        Part-Time
+                                        {{__('page.Part-Time')}}
                                     </h3>
                                 @elseif($business_post->job_type == 3)
                                     <h3 class="flex justify-center font-medium">
-                                        Full-Time
+                                        {{__('page.Full-Time')}}
                                     </h3>
                                 @endif
                             </div>
@@ -52,7 +52,7 @@
                     </div>
                 @endforeach
             @else
-                <h2 class="font-bold text-xl">No posts yet</h2>
+                <h2 class="font-bold text-xl">{{__('page.No posts yet')}}</h2>
             @endif
         </div>
     </div>

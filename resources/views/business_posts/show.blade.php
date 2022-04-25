@@ -13,21 +13,21 @@
                         <div class="sm:items-start">
                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                 <h1 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                                    Edit post
+                                    {{__('page.Edit post')}}
                                 </h1>
                                 <div class="mt-2">
                                     <form action="" method="POST">
                                         @csrf
                                         @method('PATCH')
                                         <div>
-                                            <label class="w-20 text-right mr-8 font-bold">Title</label>
+                                            <label class="w-20 text-right mr-8 font-bold">{{__('page.Title')}}</label>
                                             <div>
                                                 <input class="form-control w-full rounded" type="text" name="title"
-                                                       placeholder="Title" minlength="5" maxlength="100" required/>
+                                                       placeholder="{{__('page.Title')}}" minlength="5" maxlength="100" required/>
                                             </div>
                                         </div>
                                         <div>
-                                            <label class="w-20 text-right mr-8 font-bold">Category</label>
+                                            <label class="w-20 text-right mr-8 font-bold">{{__('page.Category')}}</label>
                                             <div class="control">
                                                 <div class="select bg-white">
                                                     <select
@@ -44,83 +44,83 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <label class="w-20 text-right mr-8 font-bold">Job Content</label>
+                                            <label class="w-20 text-right mr-8 font-bold">{{__('page.Job Content')}}</label>
                                             <div class="control">
                                                 <textarea
                                                     class="form-control block w-full px-3 py-1.5 text-base rounded"
                                                     name="job_content"
-                                                    placeholder="Job Content"
+                                                    placeholder="{{__('page.Job Content')}}"
                                                     minlength="5" maxlength="2000" required rows="10"></textarea>
                                             </div>
                                         </div>
                                         <div>
-                                            <label class="w-20 text-right mr-8 font-bold">Job Requirements</label>
+                                            <label class="w-20 text-right mr-8 font-bold">{{__('page.Job Requirements')}}</label>
                                             <div class="control">
                                                  <textarea
                                                      class="form-control block w-full px-3 py-1.5 text-base w-full rounded"
                                                      name="job_requirements"
-                                                     placeholder="Job Requirements"
+                                                     placeholder="{{__('page.Job Requirements')}}"
                                                      minlength="5" maxlength="2000" required rows="10"></textarea>
                                             </div>
                                         </div>
                                         <div>
-                                            <label class="w-20 text-right mr-8 font-bold">Job Offer</label>
+                                            <label class="w-20 text-right mr-8 font-bold">{{__('page.Job Offer')}}</label>
                                             <div class="control">
                                                 <textarea
                                                     class="form-control block w-full px-3 py-1.5 text-base w-full rounded"
                                                     name="job_offer"
-                                                    placeholder="Job Offer"
+                                                    placeholder="{{__('page.Job Offer')}}"
                                                     minlength="5" maxlength="2000" required rows="10"></textarea>
                                             </div>
                                         </div>
                                         <div>
-                                            <label class="w-20 text-right mr-8 font-bold">Job Salary</label>
+                                            <label class="w-20 text-right mr-8 font-bold">{{__('page.Job Salary')}}</label>
                                             <div class="control">
                                                 <div>
                                                     <input class="form-control w-full rounded" type="text"
                                                            name="job_salary"
-                                                           placeholder="Salary" minlength="5" maxlength="100" required/>
+                                                           placeholder="{{__('page.Job Salary')}}" minlength="5" maxlength="100" required/>
                                                 </div>
                                             </div>
                                         </div>
                                         <div>
-                                            <label class="w-20 text-right mr-8 font-bold">Job Type</label>
+                                            <label class="w-20 text-right mr-8 font-bold">{{__('page.Job Type')}}</label>
                                             <div class="control">
                                                 <div class="select bg-white">
                                                     <select
                                                         class="w-full block appearance-none bg-transparent bg-white px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                                                         name="job_type" required>
-                                                        <option value="1">Internship</option>
-                                                        <option value="2">Part-Time</option>
-                                                        <option value="3">Full-Time</option>
+                                                        <option value="1">{{__('page.Internship')}}</option>
+                                                        <option value="2">{{__('page.Part-Time')}}</option>
+                                                        <option value="3">{{__('page.Full-Time')}}</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div>
-                                            <label class="w-20 text-right mr-8 font-bold">City</label>
+                                            <label class="w-20 text-right mr-8 font-bold">{{__('page.City')}}</label>
                                             <div>
                                                 <input class="form-control w-full rounded" type="text" name="city"
-                                                       placeholder="City" minlength="5" maxlength="100" required/>
+                                                       placeholder="{{__('page.City')}}" minlength="5" maxlength="100" required/>
                                             </div>
                                         </div>
                                         <div>
-                                            <label class="w-20 text-right mr-8 font-bold">Business Link</label>
+                                            <label class="w-20 text-right mr-8 font-bold">{{__('page.Business Link')}}</label>
                                             <div>
                                                 <input class="form-control w-full rounded" type="text"
                                                        name="business_link"
-                                                       placeholder="Business Link" minlength="5" maxlength="500"
+                                                       placeholder="{{__('page.Business Link')}}" minlength="5" maxlength="500"
                                                        required/>
                                             </div>
                                         </div>
                                         <div class="bg-white px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                             <button type="submit"
                                                     class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
-                                                Update
+                                                {{__('page.buttons.Update')}}
                                             </button>
                                             <button type="button"
                                                     class="closeModal mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-100 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                                                Close
+                                                {{__('page.buttons.Close')}}
                                             </button>
                                         </div>
                                     </form>
@@ -154,46 +154,45 @@
                         <span>{{\App\Models\Category::find($business_post->category)->name}}</span>
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold leading-7 text-gray-900 sm:text-2xl sm:truncate py-1">Type</h1>
+                        <h1 class="text-xl font-bold leading-7 text-gray-900 sm:text-2xl sm:truncate py-1">{{__('page.Job Type')}}</h1>
                         @if($business_post->job_type == 1)
-                            <h2>Internship</h2>
+                            <h2>{{__('page.Internship')}}</h2>
                         @elseif($business_post->job_type == 2)
-                            <h2>Part-Time</h2>
+                            <h2>{{__('page.Part-Time')}}</h2>
                         @elseif($business_post->job_type == 3)
-                            <h2>Full-Time</h2>
+                            <h2>{{__('page.Full-Time')}}</h2>
                         @endif
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold leading-7 text-gray-900 sm:text-2xl sm:truncate">About</h1>
+                        <h1 class="text-xl font-bold leading-7 text-gray-900 sm:text-2xl sm:truncate">{{__('page.About')}}</h1>
                         <div class="">
                             <p class="text-sm leading-7 text-gray-900 text-justify break-words break-all"
                                style="white-space: pre-wrap">{{$business_post->job_content}}</p>
                         </div>
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold leading-7 text-gray-900 sm:text-2xl sm:truncate">Requirements</h1>
+                        <h1 class="text-xl font-bold leading-7 text-gray-900 sm:text-2xl sm:truncate">{{__('page.Requirements')}}</h1>
                         <div class="">
                             <p class="text-sm leading-7 text-gray-900 text-justify break-words break-all"
                                style="white-space: pre-wrap">{{$business_post->job_requirements}}</p>
                         </div>
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold leading-7 text-gray-900 sm:text-2xl sm:truncate">We offer</h1>
+                        <h1 class="text-xl font-bold leading-7 text-gray-900 sm:text-2xl sm:truncate">{{__('page.We offer')}}</h1>
                         <div class="">
                             <p class="text-sm leading-7 text-gray-900 text-justify break-words break-all"
                                style="white-space: pre-wrap">{{$business_post->job_offer}}</p>
                         </div>
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold leading-7 text-gray-900 sm:text-2xl sm:truncate">Salary</h1>
+                        <h1 class="text-xl font-bold leading-7 text-gray-900 sm:text-2xl sm:truncate">{{__('page.Salary')}}</h1>
                         <div class="">
                             <p class="text-sm leading-7 text-gray-900 text-justify break-words break-all"
                                style="white-space: pre-wrap">{{$business_post->job_salary}}</p>
                         </div>
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold leading-7 text-gray-900 sm:text-2xl sm:truncate">Read more about
-                            us</h1>
+                        <h1 class="text-xl font-bold leading-7 text-gray-900 sm:text-2xl sm:truncate">{{__('page.Read more about us')}}</h1>
                         <div class="">
                             <a href="{{$business_post->business_link}}"
                                class="text-sm leading-7 text-gray-900 hover:text-red-600 hover:underline text-justify"
@@ -201,9 +200,9 @@
                         </div>
                     </div>
                     @if($business_post->user_id != Auth::id())
-                        <div>
+                        <div class="py-2">
                             <a href="{{route('application',$business_post->slug)}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                                Apply Now
+                                {{__('page.buttons.Apply Now')}}
                             </a>
                         </div>
                     @endif
@@ -213,8 +212,7 @@
                 @if($business_post->user_id == Auth::id())
                     <aside class="bg-white w-2/5 max-h-40 m-4 sticky shadow" style="position: sticky; top: 2rem">
                         <div class="flex justify-center border-b border-gray-300 bg-gray-100">
-                            <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Edit
-                                Post</h1>
+                            <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate py-2">{{__('page.Edit post')}}</h1>
                         </div>
                         <div class="py-10 bg-gray-100 flex justify-center">
                             <button type="button"
@@ -229,7 +227,7 @@
                                     data-job_salary="{{ $business_post->job_salary }}"
                                     data-city="{{ $business_post->city }}"
                                     data-business_link="{{ $business_post->business_link }}">
-                                Edit
+                                {{__('page.buttons.Edit')}}
                             </button>
                         </div>
                     </aside>

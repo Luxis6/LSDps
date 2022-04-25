@@ -63,10 +63,10 @@
         </form>
         <div class="flex justify-center items-center mt-4 py-1 border-t ">
             <p class="text-sm text-gray-600 px-1">
-                {{ __('Not a member yet?') }}
+                {{ __('Not A Member Yet?') }}
             </p>
             <a class="text-sm text-red-600 underline hover:text-red-900" href="{{ route('register') }}">
-                {{ __('Register now') }}
+                {{ __('Register Now') }}
             </a>
         </div>
     </x-auth-card>

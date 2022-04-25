@@ -2,18 +2,18 @@
     <span>
         <form class="form-inline my-2 my-lg-0 flex lg:flex-row md:flex-row flex-col" action="{{route('sort')}}" method="post">
             @csrf
-            <select class="form-control mr-sm-2 lg:w-1/5 w-auto" name="sort" placeholder="Sort" aria-label="Sort" required>
-                <option value="0" @if(!Session::get('sort') == "1") selected @endif>Most votes</option>
-                <option value="1" @if(!Session::get('sort') == "0") selected @endif>Most recent</option>
+            <select class="form-control mr-sm-2 lg:w-1/5 w-auto" name="sort" aria-label="{{__('page.Sort')}}" required>
+                <option value="0" @if(!Session::get('sort') == "1") selected @endif>{{__('page.Most votes')}}</option>
+                <option value="1" @if(!Session::get('sort') == "0") selected @endif>{{__('page.Most recent')}}</option>
             </select>
             <div class="px-2 lg:py-0 py-2 flex justify-center">
             <button class="flex justify-center block rounded bg-transparent bg-green-300 hover:bg-green-500 py-2 px-2 font-bold shadow" type="submit">Sort</button>
             </div>
         </form>
     </span>
-    <h3 class="font-medium text-lg"> Comments</h3>
+    <h3 class="font-medium text-lg">{{__('page.Votes')}}</h3>
     <div class="courses-review-comments py-2">
-        <h3>{{count($ratings)}} votes</h3>
+        <h3>{{count($ratings)}} {{__('page.votes')}}</h3>
         @foreach($ratings as $rating)
             <div class="bg-white border-t border-b border-gray-200">
                <!-- <img src="{{\App\Models\User::find($rating->user_id)->photo}}" alt="image">-->
@@ -44,7 +44,7 @@
                    @endif
                 <span class="text-right">
                         @if($rating->user_id == Auth::id())
-                        <a class="hover:text-red-600" href="{{route('vote.remove', $rating->id)}}">Delete</a>
+                        <a class="hover:text-red-600" href="{{route('vote.remove', $rating->id)}}">{{__('page.buttons.Delete')}}</a>
                     @endif
                     </span>
 

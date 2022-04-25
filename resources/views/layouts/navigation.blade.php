@@ -26,28 +26,24 @@
     <div class="w-full mt-2 lg:inline-flex lg:w-auto lg:mt-0" :class="{'hidden':!navbarOpen,'flex':navbarOpen}">
         <ul class="flex flex-col w-full space-y-2 lg:w-auto lg:flex-row lg:space-y-0 lg:space-x-2">
             <li class="lg:mx-2 mx-4">
-                <a href="{{route('business_home')}}" class="text-md hover:text-red-600 duration-600" target="_blank">For Businesses & Applicants</a>
+                <a href="{{route('business_home')}}" class="text-md hover:text-red-600 duration-600" target="_blank">{{__('navigation.For Businesses & Applicants')}}</a>
             </li>
             @auth
                 @if(\Illuminate\Support\Facades\Auth::user()->type == 2)
                     <li class="mx-4 lg:mx-0">
-                        <a href="{{ route('categories') }}" class="text-md hover:text-red-600 duration-600">Categories
-                            management</a>
+                        <a href="{{ route('categories') }}" class="text-md hover:text-red-600 duration-600">{{__('navigation.Categories management')}}</a>
                     </li>
                     <li class="mx-4">
-                        <a href="{{ route('admin.users') }}" class="text-md hover:text-red-600 duration-600">Users
-                            management</a>
+                        <a href="{{ route('admin.users') }}" class="text-md hover:text-red-600 duration-600">{{__('navigation.Users management')}}</a>
                     </li>
                 @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->type > 0)
                         <li class="mx-4">
-                            <a href="{{route('posts.create')}}" class="text-md hover:text-red-600 duration-600">Create a
-                        Post</a>
+                            <a href="{{route('posts.create')}}" class="text-md hover:text-red-600 duration-600">{{__('navigation.Create a Post')}}</a>
                         </li>
                 @else
                     <li class="mx-4">
-                      <a href="{{route('posts.create')}}" class="create_post text-md hover:text-red-600 duration-600">Create a
-                         Post</a>
+                      <a href="{{route('posts.create')}}" class="create_post text-md hover:text-red-600 duration-600">{{__('navigation.Create a Post')}}</a>
                     </li>
                 @endif
                 <!--Authentication-->
@@ -70,10 +66,10 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('orders')">
-                            {{__('Orders')}}
+                            {{__('navigation.Orders')}}
                         </x-dropdown-link>
                         <x-dropdown-link :href="route('posts')">
-                            {{__('My Posts')}}
+                            {{__('navigation.My posts')}}
                         </x-dropdown-link>
                         <!--Authentication-->
                         <form method="POST" action="{{ route('logout') }}">
@@ -91,12 +87,12 @@
             @else
                 <li class="mx-4 md:my-0">
                     <a href="{{ route('login') }}" class="text-md hover:text-red-600 duration-600">
-                        Log in
+                        {{__('Log in')}}
                     </a>
                 </li>
                 <li class="mx-4 my-6 md:my-0">
                     <a href="{{ route('register') }}" class="text-md hover:text-red-600 duration-600 ">
-                        Register
+                        {{__('Register')}}
                     </a>
                 </li>
             @endauth

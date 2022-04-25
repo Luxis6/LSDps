@@ -1,9 +1,9 @@
-@section('title', 'Business Posts')
+@section('title', __('page.My Business Posts'))
 @extends('layouts.app_business')
 
 @section('content')
     <div class="flex justify-center py-4">
-        <h1 class="text-3xl leading-4 font-medium text-gray-900">My business posts</h1>
+        <h1 class="text-3xl leading-4 font-medium text-gray-900">{{__('page.My Business Posts')}}</h1>
     </div>
     <div class="grid grid-cols-1 lg:justify-items-center">
         <div class="flex flex-col bg-red-100 rounded-lg shadow-md m-6 lg:w-2/5 md:w-3/5 w-auto overflow-y-auto">
@@ -18,7 +18,7 @@
                         </th>
                         <th scope="col"
                             class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                            Title
+                            {{__('page.Title')}}
                         </th>
                     </tr>
                     </thead>
