@@ -35,7 +35,7 @@
                                                     <span
                                                         style="font-style: italic">{{App\Models\User::find($post->user_id)->name}}</span>
                                                 </div>
-                                                <div class="flex justify-center">
+                                                <div class="flex justify-center h-7" style="flex: 1 0 auto;">
                                                     @if(App\Models\Rating::where('post_id', $post->id)->exists())
                                                         <div class="flex">
                                                             <h1 class="px-1">{{\App\Http\Helpers::getRating($post->id)}}</h1>
