@@ -132,7 +132,11 @@
             </div>
         </div>
         <div class="flex flex-col-2">
+            @if($business_post->user_id == Auth::id())
             <div class="lg:w-4/5 w-3/5">
+            @else
+            <div class="w-full">
+            @endif
                 <div class="md:w-full mx-auto space-y-4 grid px-10 py-2">
                     <div>
                         <h1 class="py-2 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">{{$business_post->title}}</h1>
