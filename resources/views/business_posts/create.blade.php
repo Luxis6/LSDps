@@ -1,6 +1,15 @@
 @section('title',__('page.Create a New Post'))
 @extends('layouts.app_business')
 @section('content')
+    @if ($errors->any())
+        <div class="text-red-600 flex justify-center">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li class="text-red-600 font-medium">{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="flex flex-col bg-red-100 rounded-lg w-auto h-auto shadow-md m-6 overflow-hidden shadow-md sm:rounded-lg">
         <h1 class="flex w-full lg:flex items-center justify-center border-b border-gray-300 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate py-2">
             {{__('page.Create a New Post')}}</h1>

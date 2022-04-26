@@ -2,6 +2,15 @@
 @extends('layouts.app_business')
 @section('content')
     <section>
+        @if ($errors->any())
+            <div class="text-red-600 flex justify-center">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li class="text-red-600 font-medium">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form class="lg:w-1/4 lg:mx-auto" method="post" action="{{ route('applications.store', $business_post->slug) }}" enctype="multipart/form-data">
             @csrf
             <div>

@@ -40,7 +40,7 @@ class Business_PostController extends Controller
     {
         // Validate posted form data
         $validated = $request->validate([
-            'title' => 'required|string|unique:posts|min:5|max:100',
+            'title' => 'required|string|unique:business_posts|min:5|max:100',
             'category' => 'required|string|max:30',
             'job_content' => 'required|string|min:5|max:2000',
             'job_requirements' => 'required|string|min:5|max:2000',

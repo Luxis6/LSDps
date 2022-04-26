@@ -41,7 +41,7 @@ class PostController extends Controller
             'content' => 'required|string|min:5|max:2000',
             'category' => 'required|string|max:30',
             'price' => 'required|numeric|max:10000',
-            'img' => 'required|file|mimes:jpeg,bmp,png,gif,svg'
+            'img' => 'required|file|mimes:jpeg,jpg,bmp,png,gif,svg'
         ]);
 
         $file = $request->file('img');
