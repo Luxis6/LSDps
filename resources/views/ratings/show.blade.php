@@ -7,7 +7,7 @@
                 <option value="1" @if(!Session::get('sort') == "0") selected @endif>{{__('page.Most recent')}}</option>
             </select>
             <div class="px-2 lg:py-0 py-2 flex justify-center">
-            <button class="flex justify-center block rounded bg-transparent bg-green-300 hover:bg-green-500 py-2 px-2 font-bold shadow" type="submit">Sort</button>
+            <button class="flex justify-center block rounded bg-transparent bg-green-300 hover:bg-green-500 py-2 px-2 font-bold shadow" type="submit">{{__('page.Sort')}}</button>
             </div>
         </form>
     </span>

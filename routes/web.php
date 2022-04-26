@@ -28,6 +28,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/business', [Business_HomeController::class, 'index'])->name('business_home');
 Route::middleware(['auth'])->group(function () {
+    //VoteSort
+    Route::post('sort', [RatingController::class,'sort'])->name('sort');
     Route::middleware(['admin'])->group(function () {
         //Categories management
         Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
@@ -56,7 +58,6 @@ Route::middleware(['auth'])->group(function () {
         //Votes
         Route::get('vote/remove/{id}', [RatingController::class,'remove'])->name('vote.remove');
         Route::post('vote/{id}', [RatingController::class,'vote'])->name('vote');
-        Route::post('sort', [RatingController::class,'sort'])->name('sort');
         //Orders
         Route::get('orders', [OrderController::class,'index'])->name('orders');
         Route::get('order/{slug}', [OrderController::class,'create'])->name('order');
