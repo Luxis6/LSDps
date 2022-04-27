@@ -20,6 +20,10 @@
                                 class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                                 {{__('page.Title')}}
                             </th>
+                            <th scope="col"
+                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                {{__('page.post.Clicks')}}
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -29,6 +33,7 @@
                                     <td class="px-6 text-md font-medium text-gray-900 whitespace-nowrap dark:text-white hover:underline">
                                         <a href="{{ route('posts.show', [$post->slug]) }}">{{$post->title}}</a>
                                     </td>
+                                    <td class="px-20">{{$post->clicks}}</td>
                                 </tr>
                         @endforeach
                         </tbody>

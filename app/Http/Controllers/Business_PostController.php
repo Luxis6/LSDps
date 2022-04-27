@@ -70,6 +70,9 @@ class Business_PostController extends Controller
         if (!$business_post) {
             abort(404);
         }
+        if($business_post->user_id != Auth::id()) {
+            $business_post->increment('clicks');
+        }
         return view('business_posts.show', [
             'business_post' => $business_post,
             'categories' => $categories

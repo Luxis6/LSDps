@@ -70,6 +70,9 @@ class PostController extends Controller
         }
         $rate = RatingsService::overall($post->id);
         // Pass current post to view
+        if($post->user_id != Auth::id()) {
+            $post->increment('clicks');
+        }
         return view('posts.show', [
             'post' => $post,
             'rate' => $rate,

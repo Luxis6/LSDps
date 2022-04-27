@@ -36,6 +36,7 @@ return[
     "My posts" => "Mano skelbimai",
     "Edit post" => "Redaguoti skelbimą",
     "About" => "Apie",
+    "post.Clicks" => "Paspaudimai (Peržiūros)",
 
     //Ratings
     "Choose a vote" => "Pasirinkti įvertinimą",
@@ -109,6 +110,7 @@ return[
     "We offer" => "Mes siūlome",
     "Salary" => "Atlyginimas",
     "Read more about us" => "Sužinokite daugiau apie mus",
+    "business_post.Clicks" => "Paspaudimai (Peržiūros)",
 
     //Applications
     "Application" => "Prašymas",
