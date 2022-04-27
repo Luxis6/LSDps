@@ -21,6 +21,7 @@
         "tailwindcss": "^3.0.23"
     },
     "dependencies": {
+        "cloc": "^2.9.0",
         "rateyo": "^3.0.0-alpha.2",
         "sweetalert2": "^11.4.6"
     }
