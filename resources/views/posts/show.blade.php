@@ -103,7 +103,7 @@
                         <span>{{\App\Models\Category::find($post->category)->name}}</span>
                     </div>
                     <div class="col-lg-4">
-                        <div class="courses-price">
+                        <div class="">
                             <div class="flex">
                                 @if(App\Models\Rating::where('post_id', $post->id)->exists())
                                     <div class="flex">

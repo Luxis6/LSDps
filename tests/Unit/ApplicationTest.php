@@ -15,6 +15,7 @@ class ApplicationTest extends TestCase
     {
         parent::setUp();
         $this->user = User::factory()->make([
+            'id' => rand(41,62),
             'type' => 1,
         ]);
     }
@@ -40,7 +41,7 @@ class ApplicationTest extends TestCase
 
         //$cv = UploadedFile::fake()->create('cv.pdf');
 
-        $application = Application::factory()->make(['business_post_id' => $business_post->id]);
+        $application = Application::factory()->make(['business_post_id' => $business_post->id, 'user_id' => $this->user->id]);
         $response = $this->post(route('applications.store', ['id' => $business_post->slug]), $application->toArray());
         $response->assertRedirect(route('business_home'));
     }

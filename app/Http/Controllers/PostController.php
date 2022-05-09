@@ -125,7 +125,7 @@ class PostController extends Controller
         }
     }
 
-    public function destroy($post)
+   /* public function destroy($post)
     {
         $post = Post::where('slug', $post)->first();
         if ($post->user_id == Auth::id()) {
@@ -139,5 +139,5 @@ class PostController extends Controller
         } else {
             return redirect()->back();
         }
-    }
+    }*/
 }

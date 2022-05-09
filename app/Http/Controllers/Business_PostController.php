@@ -128,7 +128,7 @@ class Business_PostController extends Controller
     }
 
 
-    public function destroy($business_post)
+    /*public function destroy($business_post)
     {
         $business_post = Business_Post::where('slug', $business_post)->first();
         if ($business_post->user_id == Auth::id()) {
@@ -139,5 +139,5 @@ class Business_PostController extends Controller
         } else {
             return redirect()->back();
         }
-    }
+    }*/
 }

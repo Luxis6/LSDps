@@ -16,7 +16,6 @@
         <h3>{{count($ratings)}} {{__('page.votes')}}</h3>
         @foreach($ratings as $rating)
             <div class="bg-white border-t border-b border-gray-200">
-               <!-- <img src="{{\App\Models\User::find($rating->user_id)->photo}}" alt="image">-->
                 <div class="review-rating">
                     <div class="review-stars flex">
                         @for($i = 0; $i < $rating->vote; $i++)

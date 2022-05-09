@@ -18,7 +18,7 @@ class Business_PostFactory extends Factory
     public function definition()
     {
         return [
-            'title' => 'random',
+            'title' => $this->faker->name,
             'slug' => Str::slug($this->faker->name, '-'),
             'category' => 1,
             'job_content' => $this->faker->sentence(20),

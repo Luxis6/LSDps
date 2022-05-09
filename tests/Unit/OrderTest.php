@@ -14,6 +14,7 @@ class OrderTest extends TestCase
     {
         parent::setUp();
         $this->user = User::factory()->make([
+            'id' => rand(41,62),
             'type' => 1,
         ]);
     }
@@ -35,7 +36,7 @@ class OrderTest extends TestCase
         $this->actingAs($this->user);
         $post = Post::first();
 
-        $order = Order::factory()->make(['post_id' => $post->id]);
+        $order = Order::factory()->make(['post_id' => $post->id, 'user_id' => $this->user->id]);
         $response = $this->post(route('orders.store', ['slug' => $post->slug]), $order->toArray());
         $response->assertRedirect(route('home'));
     }

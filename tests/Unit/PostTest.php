@@ -40,10 +40,46 @@ class PostTest extends TestCase
         $response = $this->get('/posts/categories/'.$main_category->slug. '/'. $sub_category->slug);
         $response->assertStatus(200);
     }
-    public function test_user_can_view_post()
+
+    public function test_user_can_view_create()
+    {
+        $user = User::factory()->make([
+            'type' => 1,
+        ]);
+        $this->actingAs($user);
+        $response = $this->get(route('posts.create'));
+        $response->assertStatus(200);
+
+    }
+
+    /**
+     * @covers  \App\Http\Controllers\PostController::store
+     */
+    public function test_user_can_create_post(): array
+    {
+        $user = User::factory()->make([
+            'id' => rand(41,62),
+            'type' => 1,
+        ]);
+        $this->actingAs($user);
+        $post = Post::factory(1)->create(['user_id' => $user->id]);
+
+       // $user = User::where('type', 1)->first();
+        //$post->user_id = $user->id;
+        $response = $this->followingRedirects()->post(route('posts.store'), $post->toArray());
+        $response->assertStatus(200);
+       // $response->assertRedirect(route('posts.show', [$post[0]->slug]));
+        $data = ["post" => $post];
+        return $data;
+    }
+    /**
+     * @depends test_user_can_create_post
+     */
+    public function test_user_can_view_post(array $array)
     {
         $this->actingAs($this->user);
-        $post = Post::first();
+        $post = $array['post'];
+        $post = Post::where('title', $post[0]->title)->first();
         $response = $this->get('/posts/'.$post->slug);
         $response->assertStatus(200);
 
@@ -56,32 +92,26 @@ class PostTest extends TestCase
         $response->assertStatus(404);
 
     }
-    public function test_user_can_view_create()
+    /**
+     * @depends test_user_can_create_post
+     * @covers \App\Http\Controllers\PostController::update
+     */
+
+    public function test_user_can_update_post(array $array)
     {
-        $user = User::factory()->make([
-            'type' => 1,
-        ]);
-        $this->actingAs($user);
-        $response = $this->get(route('posts.create'));
+        $this->actingAs($this->user);
+        $post = $array['post'];
+        $post = Post::where('title', $post[0]->title)->first();
+        //$post = Post::factory(1)->make(['user_id' => $user->id]);
+        $response = $this->followingRedirects()->patch('/posts/update/'.$post->slug,
+            [
+                'title' => 'new name',
+                'slug' => 'new-name',
+            ]);
         $response->assertStatus(200);
-
+        //$response->assertRedirect(route('business_posts.show', [$business_post[0]->slug]));
     }
-    public function test_user_can_create_post(): Post
-    {
-        $user = User::factory()->make([
-            'type' => 1,
-        ]);
-        $this->actingAs($user);
-        $post = Post::factory(1)->create();
-
-        $user = User::where('type', 1)->first();
-        $post->user_id = $user->id;
-        $response = $this->post(route('posts.store'), $post->toArray());
-        $response->assertRedirect(route('posts.show', [$post[0]->slug]));
-        return $post;
-    }
-
-    public function test_user_can_delete_post()
+   /* public function test_user_can_delete_post()
     {
         $user = User::factory()->make([
             'type' => 1,
@@ -90,5 +120,5 @@ class PostTest extends TestCase
         $post = Post::where('content', 'Siuloma pagalba IT srityje')->first();
         $response = $this->delete('/posts/destroy/'.$post->slug);
         $response->assertRedirect(route('home'));
-    }
+    }*/
 }
