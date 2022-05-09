@@ -15,7 +15,7 @@ class RatingController extends Controller
     {
         $this->middleware('auth');
     }
-
+    //PA5
     public function vote(Request $request, $post)
     {
         $rs = new RatingsService();
@@ -43,10 +43,12 @@ class RatingController extends Controller
 
         $sort = Session::get('sort');
         $rts = null;
-        //Pagal balsus
+        //By vote
         if ($sort == 0) {
             $rts = Rating::where('post_id', $post)->orderBy('vote', 'desc')->get();
-        } elseif ($sort == 1) { //Data
+        }
+        //By date
+        elseif ($sort == 1) {
             $rts = Rating::where('post_id', $post)->orderBy('created_at', 'desc')->get();
         }
 

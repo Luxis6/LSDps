@@ -89,6 +89,7 @@
                     <div>
                         <h1 class="py-2 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">{{$post->title}}</h1>
                         <h2 class="text-sm font-bold leading-7 text-gray-900 sm:text-md sm:truncate">{{\App\Models\User::find($post->user_id)->name}}</h2>
+                        <i class="text-sm font-bold leading-7 text-gray-900 sm:text-md sm:truncate">{{\App\Models\User::find($post->user_id)->email}}</i>
                     </div>
                     <div class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"

@@ -72,7 +72,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/categories/{slug}', [CategoryController::class, 'indexSub'])->name('subCategory');
     //Posts
     Route::get('/posts/{slug}', [PostController::class,'show'])->name('posts.show');
-    Route::get('/categories/{main_slug}/{slug}', [PostController::class,'indexByCategory'])->name('category.posts.index');
+    Route::get('/posts/categories/{main_slug}/{slug}', [PostController::class,'indexByCategory'])->name('category.posts.index');
     //Business Posts
     Route::get('/business_posts/{slug}', [Business_PostController::class,'show'])->name('business_posts.show');
     Route::get('/business_posts/categories/{slug}', [Business_PostController::class,'indexByCategory'])->name('category.business_posts.index');

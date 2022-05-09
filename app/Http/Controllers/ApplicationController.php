@@ -16,6 +16,7 @@ class ApplicationController extends Controller
     {
         $this->middleware(['auth']);
     }
+    //PA17
     public function index()
     {
         $user = Auth::id();
@@ -23,13 +24,13 @@ class ApplicationController extends Controller
         $applications = Application::all();
         return view('applications.index', ['applications'=> $applications, 'business_posts'=> $business_posts,]);
     }
-
+    //PA6
     public function create(string $slug)
     {
         $business_post = Business_Post::where('slug', $slug)->first();
         return view('applications.create', compact('business_post'));
     }
-
+    //PA6
     public function store(Request $request,string $slug)
     {
         $business_post = Business_Post::where('slug', $slug)->first();
@@ -48,7 +49,6 @@ class ApplicationController extends Controller
         $application->cv = $cv;
         $application->save();
 
-        // Redirect the user to the created post with a success notification
         return redirect()->route('business_home');
     }
 

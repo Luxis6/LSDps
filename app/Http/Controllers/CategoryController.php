@@ -12,7 +12,7 @@ class CategoryController extends Controller
     {
         $this->middleware(['auth']);
     }
-
+    //PA20
     public function index()
     {
 
@@ -30,6 +30,7 @@ class CategoryController extends Controller
         $categories = Category::where('parent_id', $main_category->id)->get();
         return view('categories.sub_categories_index',['categories'=>$categories, 'main_category' => $main_category]);
     }
+    //PA21
     public function store(Request $request)
     {
         $validatedData = $this->validate($request, [
@@ -42,7 +43,7 @@ class CategoryController extends Controller
 
         return redirect()->route('categories')->withSuccess('You have successfully created a Category!');
     }
-
+    //PA22
     public function update(Request $request, $category)
     {
         $validatedData = $this->validate($request, [
@@ -54,7 +55,7 @@ class CategoryController extends Controller
 
         return redirect()->route('categories')->withSuccess('You have successfully updated a Category!');
     }
-
+    //PA23
     public function destroy($category)
     {
         $category = Category::find($category);

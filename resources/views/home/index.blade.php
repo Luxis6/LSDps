@@ -31,7 +31,7 @@
                                             </div>
                                             <div class="px-2">
                                                 <div class="flex justify-center">
-                                                <!--<img src="{{App\Models\User::find($post->user_id)->photo}}" class="shadow" alt="image">-->
+
                                                     <span
                                                         style="font-style: italic">{{App\Models\User::find($post->user_id)->name}}</span>
                                                 </div>

@@ -16,23 +16,22 @@ class PostController extends Controller
     {
         $this->middleware(['auth']);
     }
-
+    //PA7
     public function index()
     {
-        // Get all Posts, ordered by the newest first
+
         $posts = Post::where('user_id',Auth::id())->get();
 
-        // Pass Post Collection to view
         return view('posts.index', compact('posts'));
     }
-
+    //PA8
     public function create()
     {
         // Show create post for
         $categories = Category::all();
         return view('posts.create', ['categories'=>$categories]);
     }
-
+    //PA8
     public function store(Request $request)
     {
         // Validate posted form data
@@ -60,7 +59,7 @@ class PostController extends Controller
         // Redirect the user to the created post with a success notification
         return redirect(route('posts.show', [$post->slug]))->with('notification', 'Post created!');
     }
-
+    //PA9
     public function show($post)
     {
         $post = Post::where('slug', $post)->first();
@@ -69,37 +68,25 @@ class PostController extends Controller
             abort(404);
         }
         $rate = RatingsService::overall($post->id);
-        // Pass current post to view
+
         if($post->user_id != Auth::id()) {
             $post->increment('clicks');
         }
+        // Pass current post to view
         return view('posts.show', [
             'post' => $post,
             'rate' => $rate,
             'categories' => $categories
         ]);
     }
+    //PA1
     public function indexByCategory($main_slug,$slug)
     {
         $category = Category::where('slug', $slug)->first();
         $posts = Post::where('category', $category->id)->get();
         return view('posts.category.index', compact('posts'), ['category' => $category]);
     }
-
-    public function edit($post)
-    {
-        $post = Post::where('slug', $post)->first();
-        if ($post->user_id == Auth::id()) {
-            $categories = Category::all();
-            return view('posts.edit', [
-                'post' => $post,
-                'categories' => $categories
-            ]);
-        } else {
-            return redirect()->back();
-        }
-    }
-
+    //PA10
     public function update(Request $request, $post)
     {
         $post = Post::where('slug', $post)->first();
@@ -131,7 +118,7 @@ class PostController extends Controller
             // Update Post with validated data
             $post->update($validated);
 
-            // Redirect the user to the created post woth an updated notification
+            // Redirect the user to the created post with an updated notification
             return redirect(route('posts.show', [$post->slug]))->with('notification', 'Post updated!');
         } else {
             return redirect()->back();

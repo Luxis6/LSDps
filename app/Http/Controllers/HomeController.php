@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    //PA1
     public function index()
     {
         $posts = Post::latest()->take(4)->get();

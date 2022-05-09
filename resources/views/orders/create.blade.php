@@ -1,4 +1,4 @@
-@section('title', __('page.Order') .': '. $post->title)
+@section('title', __('page.To Order') .': '. $post->title)
 @extends('layouts.app')
 @section('content')
     <section class="checkout-area">

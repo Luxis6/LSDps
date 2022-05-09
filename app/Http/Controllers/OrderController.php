@@ -15,7 +15,7 @@ class OrderController extends Controller
     {
         $this->middleware('auth');
     }
-
+    //PA4 ir PA12
     public function index()
     {
         $user = Auth::id();
@@ -37,14 +37,14 @@ class OrderController extends Controller
             'user_posts' => $user_posts
         ]);
     }
-
+    //PA3
     public function create($slug)
     {
         $post = Post::where('slug', $slug)->first();
         return view('orders.create', compact('post'));
     }
 
-    public function view($id)
+   /* public function view($id)
     {
         $order = Order::findOrFail($id);
         $post = Post::findOrFail($order->service);
@@ -52,8 +52,9 @@ class OrderController extends Controller
             'order' => $order,
             'post' => $post
         ]);
-    }
+    }*/
 
+    //PA3
     public function store(Request $request, $data)
     {
         $post = Post::where('slug', $data)->first();

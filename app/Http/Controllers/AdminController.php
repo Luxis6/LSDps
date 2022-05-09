@@ -11,7 +11,7 @@ class AdminController extends Controller
     {
         $this->middleware(['auth', 'admin']);
     }
-
+    //PA18
     public function index(){
         $verified = User::where('type','>', 0)->get();
         $waiting = User::where('type', 0)->get();
@@ -20,7 +20,7 @@ class AdminController extends Controller
             'waiting' => $waiting
         ]);
     }
-
+    //PA19
     public function verifyUser($id){
         $user = User::find($id);
         $user->type = 1;

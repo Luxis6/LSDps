@@ -14,7 +14,7 @@ class Business_PostController extends Controller
     {
         $this->middleware(['auth']);
     }
-
+    //PA13
     public function index()
     {
         // Get all Posts, ordered by the newest first
@@ -23,19 +23,21 @@ class Business_PostController extends Controller
         // Pass Post Collection to view
         return view('business_posts.index', compact('business_posts'));
     }
+    //PA2
     public function indexByCategory($slug)
     {
         $category = Category::where('slug', $slug)->first();
         $business_posts = Business_Post::where('category', $category->id)->get();
         return view('business_posts.category.index', compact('business_posts'), ['category' => $category]);
     }
+    //PA14
     public function create()
     {
         $categories = Category::all();
         return view('business_posts.create', ['categories'=>$categories]);
     }
 
-
+    //PA14
     public function store(Request $request)
     {
         // Validate posted form data
@@ -62,7 +64,7 @@ class Business_PostController extends Controller
         return redirect(route('business_posts.show', [$business_post->slug]))->with('notification', 'Post created!');
     }
 
-
+    //PA15
     public function show($business_post)
     {
         $business_post = Business_Post::where('slug', $business_post)->first();
@@ -80,7 +82,7 @@ class Business_PostController extends Controller
     }
 
 
-    public function edit($business_post)
+    /*public function edit($business_post)
     {
         $business_post = Business_Post::where('slug', $business_post)->first();
         if ($business_post->user_id == Auth::id()) {
@@ -92,9 +94,9 @@ class Business_PostController extends Controller
         } else {
             return redirect()->back();
         }
-    }
+    }*/
 
-
+    //PA16
     public function update(Request $request, $business_post)
     {
         $business_post = Business_Post::where('slug', $business_post)->first();
